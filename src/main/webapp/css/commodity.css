@@ -1,0 +1,125 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14 лип. 2020, 21:31:04
+    Author     : dmytr
+*/
+#commodityHeader{    
+  text-align: center;
+  font-size: 48px;
+  color:white;
+  font-family: 'Arial Black';
+  background-color: rgb(55,110,130);
+  padding:50px;
+  border:10px solid rgb(55,110,130);  
+  margin-top:0px;
+  margin-left:0px;
+  margin-right:0px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+#form form{
+  background-color:white; 
+  border:5px solid rgb(55,110,130);
+  border-bottom:10px solid rgb(55,110,130);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding-top: 15px;
+  margin-top: -15px
+}
+#form{
+    background-color:rgb(55,110,130);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+#commodityList{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+}
+#commodityList #commodity img{ 
+  order:0;
+  width:300px;
+  height:300px;
+}
+#commodityRow{    
+  display:flex;
+  justify-content:space-around;
+}
+#commodity{
+  width:300px;  
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  border:1px solid gray;
+  margin:15px;
+  align-items:center;
+}
+#commodityList #commodity p{
+  text-align: center;
+  margin:0px;
+}
+
+#otherPagesLinks{
+    display:flex;
+    justify-content:space-around;    
+}
+#otherPagesLinks a{
+    color:white;
+    padding-left:100px;
+    padding-right:100px;
+    padding-top:30px;
+    padding-bottom:30px;
+    border-radius:10px;
+    text-align: center;
+}
+#otherPagesLinks a:hover{
+   background-color: rgb(50,100,110); 
+}
+#commodity .buy{   
+   width:200px;
+   height:50px;
+   margin-bottom:15px;     
+}
+#filterBtnContainer{
+  background-color: rgb(55,110,130);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  height:50px;
+  margin-bottom: 50px;
+  /*margin-top:-12px;*/  
+}
+#filterBtn{
+    float:left;    
+}
+@media(max-width:980px){
+  #commodityRow{    
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+  }
+  
+  #commodity{
+    align-self:center;
+  }
+  
+  #otherPagesLinks{
+    flex-direction:column;    
+  } 
+  
+}
+@media(max-width:720px){
+    #form form{
+       display:flex;
+       flex-direction:column;
+       justify-content:space-around;
+       align-items:center;
+    }
+    #form form div{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}

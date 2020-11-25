@@ -1,0 +1,216 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14 лип. 2020, 12:34:06
+    Author     : dmytr
+*/
+body{
+    border:none;
+    margin:0px;   
+}
+#links{    
+  display:flex;
+  justify-content:space-around;  
+}
+#links a{
+  width:250px;     
+  border:10px solid rgb(55,110,130);
+  border-radius:10px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items:center;  
+  margin:10px;
+  margin-top:40px;
+}
+#links a img{    
+  order:0;
+  width:250px;
+  height:200px
+}
+#links a:hover img{
+  width:276px;
+  height:220px;  
+}
+#links a:hover{ 
+  width:276px;  
+  font-size:20px;  
+  margin-bottom:-20px;
+  margin-left: -3px;
+  margin-right:-3px;
+}
+a div{   
+  order:1;   
+}
+#headerContainer{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    color:white;
+    font-family: 'Arial Black';
+    background-color: rgb(55,110,130);
+    padding:30px;
+    border:10px solid rgb(55,110,130);    
+    margin:0px;  
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+#headerContainer #title{
+    text-align: center;
+    font-size: 48px;
+}
+#titleAndButtonContainer{    
+}
+
+#title img{   
+  width:55px;
+  height:55px;
+}
+
+#homeLink{
+    text-decoration: none;
+    color:white;
+    font-family: 'Arial Black';
+}
+
+#socialNetworks{    
+  display:flex;
+  justify-content:space-around;   
+}
+#socialNetworks a{    
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items:center;
+  color:white;    
+}
+#socialNetworks a img{    
+  order:0;
+  width:100px;
+  height:100px;
+  border-radius: 20px; 
+}
+footer{    
+  background-color:rgb(46,71,71);
+  border-radius:20px;
+  margin-top:50px;
+}
+footer h1{
+  color:white;
+  text-align: center;
+}
+footer h2{
+  color:white;
+  text-align:center;
+  font-size:15px;
+}
+#popup_window{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display:none;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
+}
+#popup_window.active{
+    display:block;
+}
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+#basketItem{    
+    display:flex;
+    justify-content:space-between;
+}
+#basketItem img{
+    width:50px;
+    height:50px;
+}
+#basket{
+    float:right;
+    margin-bottom:10px;
+}
+#close {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  float:right;
+}
+.remove{
+   font-size:10px;    
+   width:75px;
+   height:30px;
+   margin-right:10px;
+}
+#totalSum{
+    text-align:right;
+}
+#send{
+    float:left;
+    margin-bottom:10px;
+}
+#apply,#basket,#filterBtn,#send,.buy,.remove{
+   color:white;
+   font-family: 'Arial Black';
+   background-color: rgb(55,110,130);
+   border-radius:10px;
+   outline:none;
+   box-shadow:10px 5px #999;
+   cursor: pointer;   
+}
+#apply:hover,#basket:hover,#send:hover,#filterBtn:hover,.buy:hover,.remove:hover{
+    background-color: rgb(50,100,110);
+}
+#apply:active,#basket:active,#filterBtn:active,#send:hover,.buy:active,.remove:active{
+  background-color: rgb(50,100,110);
+  box-shadow: 5px 0px #660;
+  transform: translateY(4px);
+}
+@media(max-width:980px){
+  #links{    
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items:center;
+  }  
+
+  #socialNetworks{    
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;   
+  }
+  #socialNetworks a{    
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:center;
+    color:white;  
+  } 
+}
+
+
+

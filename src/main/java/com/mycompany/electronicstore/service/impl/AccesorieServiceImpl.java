@@ -5,7 +5,7 @@
  */
 package com.mycompany.electronicstore.service.impl;
 
-import com.mycompany.electronicstore.model.AccesorieModel;
+import com.mycompany.electronicstore.model.Accesorie;
 import com.mycompany.electronicstore.repository.AccesorieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class AccesorieServiceImpl implements AccesorieService{
     private AccesorieRepository accRepo;
 
     public String getByCriterias(double minPrice,double maxPrice,String brand,String[] name){
-        List<AccesorieModel> acc=accRepo.findByPrice(minPrice, maxPrice);
+        List<Accesorie> acc=accRepo.findByPrice(minPrice, maxPrice);
         acc=sortByBrand(acc,brand);
         acc=sortByName(acc,name);
         return toHTML(acc);
@@ -34,7 +34,7 @@ public class AccesorieServiceImpl implements AccesorieService{
         return toHTML(accRepo.findAll());
     }
 
-    private List<AccesorieModel> sortByName(List<AccesorieModel> acc,String[] names){
+    private List<Accesorie> sortByName(List<Accesorie> acc,String[] names){
         if(names==null){return acc;}
         return acc.stream().filter(a->Arrays.asList(names).contains(""+a.getName()))
                 .collect(Collectors.toList());

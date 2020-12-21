@@ -5,8 +5,8 @@
  */
 package com.mycompany.electronicstore.service.impl;
 
-import com.mycompany.electronicstore.model.LaptopModel;
-import com.mycompany.electronicstore.model.MobileDeviceModel;
+import com.mycompany.electronicstore.model.ITCommodity;
+import com.mycompany.electronicstore.model.MobileDevice;
 import com.mycompany.electronicstore.repository.MobileDeviceRepository;
 import com.mycompany.electronicstore.service.MobileDeviceService;
 import java.util.List;
@@ -30,7 +30,7 @@ public class MobileServiceImpl implements MobileDeviceService {
     public String getByCriterias(double minPrice,double maxPrice,String screenSize,
            String brand,String[] operMem,String intMem,String extMem,
            String camera,String[] simCount,String[] gps){
-        List<MobileDeviceModel> mobiles=mobileRepo.findByPrice(minPrice,maxPrice);
+        List<MobileDevice> mobiles=mobileRepo.findByPrice(minPrice,maxPrice);
         if(!screenSize.equals("All screensizes")){
             mobiles=sortByScreenSize(mobiles,Double.valueOf(screenSize));}
         mobiles=sortByBrand(mobiles,brand);        
@@ -53,24 +53,24 @@ public class MobileServiceImpl implements MobileDeviceService {
         return toHTML(mobileRepo.findAll());
     }
     
-    private List<MobileDeviceModel> sortByExtMem(List<MobileDeviceModel> mobiles,String extMem){
+    private List<MobileDevice> sortByExtMem(List<MobileDevice> mobiles,String extMem){
         if(extMem==null || extMem.equals("All")){return mobiles;}
         return mobiles.stream().filter(m->m.getExtMem()==Integer.parseInt(extMem)).collect(Collectors.toList());
     }
     
-    private List<MobileDeviceModel> sortByCamera(List<MobileDeviceModel> mobiles,String camera){
+    private List<MobileDevice> sortByCamera(List<MobileDevice> mobiles,String camera){
         if(camera==null || camera.equals("All")){return mobiles;}
         return mobiles.stream().filter(m->m.getCamera()==Integer.parseInt(camera))
                 .collect(Collectors.toList());
     }
     
-    private List<MobileDeviceModel> sortBySimCount(List<MobileDeviceModel> mobiles,String[] simCount){
+    private List<MobileDevice> sortBySimCount(List<MobileDevice> mobiles,String[] simCount){
         if(simCount==null || simCount.equals("Any")){return mobiles;}
         return mobiles.stream().filter(m->m.getSimCount()==Integer.parseInt(simCount[0]))
                 .collect(Collectors.toList());
     }
     
-    private List<MobileDeviceModel>  sortByGps(List<MobileDeviceModel> mobiles,String[] gps){
+    private List<MobileDevice>  sortByGps(List<MobileDevice> mobiles,String[] gps){
         if(gps==null){return mobiles;}
         if(gps.length==1){
           logger.info(""+gps.length);

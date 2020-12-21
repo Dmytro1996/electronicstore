@@ -5,7 +5,7 @@
  */
 package com.mycompany.electronicstore.service.impl;
 
-import com.mycompany.electronicstore.model.LaptopModelImpl;
+import com.mycompany.electronicstore.model.Laptop;
 import com.mycompany.electronicstore.repository.LaptopRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class LaptopServiceImpl implements LaptopService {
     
     public String getByCriterias(double minPrice,double maxPrice,String screenSize,
            String brand,String resolution,String[] operMem,String intMem){
-        List<LaptopModelImpl> laptops=laptopRepo.findByPrice(minPrice,maxPrice);
+        List<Laptop> laptops=laptopRepo.findByPrice(minPrice,maxPrice);
         if(!screenSize.equals("All screensizes")){
             laptops=sortByScreenSize(laptops,Double.valueOf(screenSize));}
         laptops=sortByBrand(laptops,brand);

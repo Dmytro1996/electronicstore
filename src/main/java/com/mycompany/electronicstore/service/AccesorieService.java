@@ -14,6 +14,5 @@ import java.util.List;
  */
 public interface AccesorieService extends CommodityService {
     String getByCriterias(double minPrice,double maxPrice,
-           String brand,String[] name);
-    String getAll();
+           String brand,String[] name);    
 }

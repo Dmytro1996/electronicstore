@@ -13,8 +13,8 @@ import java.util.List;
  * @author dmytr
  */
 public interface TelevisionService extends ScreenCommodityService {
+    
     String getByCriterias(double minPrice,double maxPrice,String screenSize,
-           String brand,String resolution,String[] smartTv,String[]  threeD);
-    String getAll();   
+           String brand,String resolution,String[] smartTv,String[]  threeD);      
     
 }

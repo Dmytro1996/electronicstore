@@ -15,29 +15,9 @@ import java.util.stream.Collectors;
  *
  * @author dmytr
  */
-public interface LaptopService extends ScreenCommodityService {
+public interface LaptopService extends ITCommodityService {
+    
     String getByCriterias(double minPrice,double maxPrice,String screenSize,
-           String brand,String resolution,String[] operMem,String intMem);
-    String getAll();
+           String brand,String resolution,String[] operMem,String intMem);    
     
-    public default <T extends ITCommodity> List<T> sortByOperMem(List<T> laptops,String[] operMem){
-        if(operMem==null){return laptops;}
-        return laptops.stream().filter(l->Arrays.asList(operMem).contains(""+l.getOperMem()))
-                .collect(Collectors.toList());
-    }
-    
-    public default <T extends ITCommodity> List<T> sortByIntMem(List<T> laptops,String intMem){
-        if(intMem==null || intMem.equals("All")){return laptops;}
-        return laptops.stream().filter(l->l.getIntMem()==Integer.parseInt(intMem))
-                .collect(Collectors.toList());
-    }    
-    
-    public default <T extends ITCommodity> List<T> sortByScreenSize(
-            List<T> comms,double screenSize){
-        if(screenSize!=0){
-            comms=comms.stream().filter(t->t.getScreenSize()==screenSize)
-                    .collect(Collectors.toList());
-        }
-        return comms;
-    }
 }

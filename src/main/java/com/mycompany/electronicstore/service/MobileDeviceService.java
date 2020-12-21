@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
  * @author dmytr
  */
 @Service
-public interface MobileDeviceService extends LaptopService {
+public interface MobileDeviceService extends ITCommodityService {
+    
     String getByCriterias(double minPrice,double maxPrice,String screenSize,
            String brand,/*String resolution,*/String[] operMem,String intMem,String extMem,
-           String camera,String[] simCount,String[] gps);
-    //String getAll();
+           String camera,String[] simCount,String[] gps);    
 }

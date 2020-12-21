@@ -14,6 +14,9 @@ import java.util.stream.Collectors;
  * @author dmytr
  */
 public interface CommodityService {
+    
+    String getAll();
+    
     public default <T extends Commodity> List<T> sortByBrand(List<T> comms,String brand){
         if(!brand.equals("All brands")){
             comms=comms.stream().filter(t->t.getBrand().getName().equals(brand))

@@ -18,12 +18,12 @@ import javax.persistence.Table;
  * @author dmytr
  */
 @MappedSuperclass
-public abstract class LaptopModel extends ScreenCommodityModel {
+public abstract class ITCommodity extends ScreenCommodity {
   @Column(name="oper_memory")
   private int operMem;
   @Column(name="internal_memory")
   private int intMem;
-    public LaptopModel(){
+    public ITCommodity(){
       super();
     }   
 

@@ -20,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="mobile_devices")
-public class MobileDeviceModel extends LaptopModel {
+public class MobileDevice extends ITCommodity {
     @Column(name="external_memory")
     private int extMem;
     @Column(name="sim_count")
@@ -29,7 +29,7 @@ public class MobileDeviceModel extends LaptopModel {
     private int camera;
     @Column
     private boolean gps;
-    public MobileDeviceModel(){
+    public MobileDevice(){
         super();
     } 
 
@@ -90,9 +90,9 @@ public class MobileDeviceModel extends LaptopModel {
             +getModel().toLowerCase()+".jpg\" alt=\""+getBrand().getName()
               +" "+getModel()+"\">";
     if(getBrand().equals("Huawei") || getBrand().getName().equals("Meizu") 
-            || getBrand().equals("Xiaomi")){
+            || getBrand().getName().equals("Xiaomi")){
       return "<img src=\"\\images\\mobileDevice-"+getBrand().getName().toLowerCase()+
-              ".jpg\" alt=\""+getBrand()+" "+getModel()+"\">";
+              ".jpg\" alt=\""+getBrand().getName()+" "+getModel()+"\">";
     }
     return "<img src=\"\\images\\mobileDevice-smartphone.jpg\" alt=\""+getBrand().getName()
             +" "+getModel()+"\">";

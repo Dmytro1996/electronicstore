@@ -19,7 +19,7 @@ import javax.validation.constraints.Pattern;
  */
 @Entity
 @Table(name="Accesories")
-public class AccesorieModel extends CommodityModel{
+public class Accesorie extends Commodity{
     @Column
     @Pattern(regexp = "[A-Z][a-z]+",
             message = "Wrong accesorie name.Must start with a capital letter followed by one or more lowercase letters")
@@ -27,7 +27,7 @@ public class AccesorieModel extends CommodityModel{
     @Column(name="short_description")
     private String shortDescription;
     
-    public AccesorieModel(){
+    public Accesorie(){
       super();
     }   
 

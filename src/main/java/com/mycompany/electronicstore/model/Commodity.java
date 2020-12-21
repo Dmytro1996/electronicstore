@@ -21,7 +21,7 @@ import javax.validation.constraints.Pattern;
  */
 @MappedSuperclass
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public abstract class CommodityModel {
+public abstract class Commodity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;    
@@ -35,7 +35,7 @@ public abstract class CommodityModel {
     @Column
     private double price;
 
-    public CommodityModel() {}    
+    public Commodity() {}    
 
     public Brand getBrand() {        
         return brand;

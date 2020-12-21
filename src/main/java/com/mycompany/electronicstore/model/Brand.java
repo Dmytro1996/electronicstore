@@ -32,11 +32,11 @@ public class Brand {
     @OneToMany(mappedBy="brand")
     private List<Television> tvs;
     @OneToMany(mappedBy="brand")
-    private List<LaptopModelImpl> laptops;
+    private List<Laptop> laptops;
     @OneToMany(mappedBy="brand")
-    private List<MobileDeviceModel> mobiles;
+    private List<MobileDevice> mobiles;
     @OneToMany(mappedBy="brand")
-    private List<AccesorieModel> accesories;
+    private List<Accesorie> accesories;
 
     public Brand() {
     }
@@ -61,27 +61,27 @@ public class Brand {
         return tvs;
     }
 
-    public void setLaptops(List<LaptopModelImpl> laptops) {
+    public void setLaptops(List<Laptop> laptops) {
         this.laptops = laptops;
     }
 
-    public void setMobiles(List<MobileDeviceModel> mobiles) {
+    public void setMobiles(List<MobileDevice> mobiles) {
         this.mobiles = mobiles;
     }
 
-    public void setAccesories(List<AccesorieModel> accesories) {
+    public void setAccesories(List<Accesorie> accesories) {
         this.accesories = accesories;
     }
 
-    public List<LaptopModelImpl> getLaptops() {
+    public List<Laptop> getLaptops() {
         return laptops;
     }
 
-    public List<MobileDeviceModel> getMobiles() {
+    public List<MobileDevice> getMobiles() {
         return mobiles;
     }
 
-    public List<AccesorieModel> getAccesories() {
+    public List<Accesorie> getAccesories() {
         return accesories;
     }
 

@@ -14,9 +14,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="laptops")
-public class LaptopModelImpl extends LaptopModel {
+public class Laptop extends ITCommodity {
 
-    public LaptopModelImpl() {
+    public Laptop() {
         super();
     }
     

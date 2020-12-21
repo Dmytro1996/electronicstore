@@ -17,14 +17,14 @@ import javax.persistence.MappedSuperclass;
  * @author dmytr
  */
 @MappedSuperclass
-public abstract class ScreenCommodityModel extends CommodityModel{
+public abstract class ScreenCommodity extends Commodity{
   @Column(name="screen_size")
   private double screenSize;
   @Column(name="resolution")
   @Enumerated(EnumType.STRING)
   private Resolution res;
 
-    public ScreenCommodityModel() {
+    public ScreenCommodity() {
         super();
     }
     

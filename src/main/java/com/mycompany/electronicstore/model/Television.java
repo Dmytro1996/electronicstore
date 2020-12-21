@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="TV")
-public class Television extends ScreenCommodityModel {
+public class Television extends ScreenCommodity {
      @Column(name="3D")
      private boolean threeD;      
      @Column(name="smart_tv")

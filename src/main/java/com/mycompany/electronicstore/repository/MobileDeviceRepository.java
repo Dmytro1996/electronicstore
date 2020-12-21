@@ -5,7 +5,7 @@
  */
 package com.mycompany.electronicstore.repository;
 
-import com.mycompany.electronicstore.model.MobileDeviceModel;
+import com.mycompany.electronicstore.model.MobileDevice;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
  * @author dmytr
  */
 @Repository
-public interface MobileDeviceRepository extends JpaRepository<MobileDeviceModel,Long> {
+public interface MobileDeviceRepository extends JpaRepository<MobileDevice,Long> {
    
     /*@Query(value="select * from mobile_devices m where m.screen_size=:screenSize  and m.brand_id=brandId"
             + "m.resolution=:resolution and m.oper_memory=:operMem and m.internal_memory=:intMem"
@@ -30,6 +30,6 @@ public interface MobileDeviceRepository extends JpaRepository<MobileDeviceModel,
             @Param("extMem")int extMem,@Param("camera")int camera,@Param("gps")boolean gps);*/
     @Query(value="select * from mobile_devices m where (m.price between :minPrice and :maxPrice)",
             nativeQuery=true)
-    public List<MobileDeviceModel> findByPrice(@Param("minPrice")double minPrice,
+    public List<MobileDevice> findByPrice(@Param("minPrice")double minPrice,
             @Param("maxPrice")double maxPrice);
 }

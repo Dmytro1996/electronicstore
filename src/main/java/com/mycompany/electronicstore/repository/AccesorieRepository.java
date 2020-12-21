@@ -5,8 +5,8 @@
  */
 package com.mycompany.electronicstore.repository;
 
-import com.mycompany.electronicstore.model.AccesorieModel;
-import com.mycompany.electronicstore.model.LaptopModel;
+import com.mycompany.electronicstore.model.Accesorie;
+import com.mycompany.electronicstore.model.ITCommodity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
  * @author dmytr
  */
 @Repository
-public interface AccesorieRepository extends JpaRepository<AccesorieModel,Long> {
+public interface AccesorieRepository extends JpaRepository<Accesorie,Long> {
     
     /*@Query(value="select * from Accesories a where a.brand_id=brandId and a.name=:name"
              + " and (m.price between :minPrice and :maxPrice)",nativeQuery=true)
@@ -26,6 +26,6 @@ public interface AccesorieRepository extends JpaRepository<AccesorieModel,Long> 
             @Param("maxPrice")double maxPrice,@Param("brandId")int brandId,@Param("name")String name);*/
     @Query(value="select * from Accesories a where (a.price between :minPrice and :maxPrice)",
             nativeQuery=true)
-    public List<AccesorieModel> findByPrice(@Param("minPrice")double minPrice,
+    public List<Accesorie> findByPrice(@Param("minPrice")double minPrice,
             @Param("maxPrice")double maxPrice);
 }

@@ -5,8 +5,8 @@
  */
 package com.mycompany.electronicstore.service;
 
-import com.mycompany.electronicstore.model.LaptopModel;
-import com.mycompany.electronicstore.model.ScreenCommodityModel;
+import com.mycompany.electronicstore.model.ITCommodity;
+import com.mycompany.electronicstore.model.ScreenCommodity;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,19 +20,19 @@ public interface LaptopService extends ScreenCommodityService {
            String brand,String resolution,String[] operMem,String intMem);
     String getAll();
     
-    public default <T extends LaptopModel> List<T> sortByOperMem(List<T> laptops,String[] operMem){
+    public default <T extends ITCommodity> List<T> sortByOperMem(List<T> laptops,String[] operMem){
         if(operMem==null){return laptops;}
         return laptops.stream().filter(l->Arrays.asList(operMem).contains(""+l.getOperMem()))
                 .collect(Collectors.toList());
     }
     
-    public default <T extends LaptopModel> List<T> sortByIntMem(List<T> laptops,String intMem){
+    public default <T extends ITCommodity> List<T> sortByIntMem(List<T> laptops,String intMem){
         if(intMem==null || intMem.equals("All")){return laptops;}
         return laptops.stream().filter(l->l.getIntMem()==Integer.parseInt(intMem))
                 .collect(Collectors.toList());
     }    
     
-    public default <T extends LaptopModel> List<T> sortByScreenSize(
+    public default <T extends ITCommodity> List<T> sortByScreenSize(
             List<T> comms,double screenSize){
         if(screenSize!=0){
             comms=comms.stream().filter(t->t.getScreenSize()==screenSize)

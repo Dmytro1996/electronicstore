@@ -5,7 +5,7 @@
  */
 package com.mycompany.electronicstore.service;
 
-import com.mycompany.electronicstore.model.CommodityModel;
+import com.mycompany.electronicstore.model.Commodity;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * @author dmytr
  */
 public interface CommodityService {
-    public default <T extends CommodityModel> List<T> sortByBrand(List<T> comms,String brand){
+    public default <T extends Commodity> List<T> sortByBrand(List<T> comms,String brand){
         if(!brand.equals("All brands")){
             comms=comms.stream().filter(t->t.getBrand().getName().equals(brand))
                     .collect(Collectors.toList());
@@ -22,7 +22,7 @@ public interface CommodityService {
         return comms;
     }
     
-    public default <T extends CommodityModel> String toHTML(List<T> comms){
+    public default <T extends Commodity> String toHTML(List<T> comms){
         String result="";    
         for(int i=0;i<comms.size();i++){
             if((i==0) || (i%3==0)){result+="<div id=\"commodityRow\">";}

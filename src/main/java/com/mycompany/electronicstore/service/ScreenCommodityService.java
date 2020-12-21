@@ -5,7 +5,7 @@
  */
 package com.mycompany.electronicstore.service;
 
-import com.mycompany.electronicstore.model.ScreenCommodityModel;
+import com.mycompany.electronicstore.model.ScreenCommodity;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  */
 public interface ScreenCommodityService extends CommodityService {
     
-    public default <T extends ScreenCommodityModel> List<T> sortByResolution(
+    public default <T extends ScreenCommodity> List<T> sortByResolution(
             List<T> comms,String resolution){
         if(resolution!=null && !resolution.equals("All resolutions")){
             comms=comms.stream().filter(t->t.getRes().toString().equals(resolution))
@@ -24,7 +24,7 @@ public interface ScreenCommodityService extends CommodityService {
         return comms;
     }
     
-    public default <T extends ScreenCommodityModel> List<T> sortByScreenSize(
+    public default <T extends ScreenCommodity> List<T> sortByScreenSize(
             List<T> comms,String[] screenSize){
         if(screenSize!=null){
             comms=comms.stream().filter(t->t.getScreenSize()<=Integer.parseInt(screenSize[1])

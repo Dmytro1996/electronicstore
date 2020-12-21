@@ -5,7 +5,7 @@
  */
 package com.mycompany.electronicstore.service;
 
-import com.mycompany.electronicstore.model.AccesorieModel;
+import com.mycompany.electronicstore.model.Accesorie;
 import java.util.List;
 
 /**

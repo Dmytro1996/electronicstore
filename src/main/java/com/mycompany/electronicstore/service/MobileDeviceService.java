@@ -5,7 +5,7 @@
  */
 package com.mycompany.electronicstore.service;
 
-import com.mycompany.electronicstore.model.MobileDeviceModel;
+import com.mycompany.electronicstore.model.MobileDevice;
 import java.util.List;
 import org.springframework.stereotype.Service;
 

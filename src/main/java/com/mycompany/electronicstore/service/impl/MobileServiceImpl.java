@@ -41,13 +41,8 @@ public class MobileServiceImpl implements MobileDeviceService {
         mobiles=sortBySimCount(mobiles,simCount);
         mobiles=sortByGps(mobiles,gps);
         return toHTML(mobiles);
-    }
-    
-    public String getByCriterias(double minPrice,double maxPrice,String screenSize,
-           String brand,String resolution,String[] operMem,String intMem){               
-        return null;
-    }
-    
+    }   
+        
     @Override
     public String getAll(){
         return toHTML(mobileRepo.findAll());

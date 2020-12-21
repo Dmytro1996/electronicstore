@@ -5,15 +5,10 @@
  */
 package com.mycompany.electronicstore.service;
 
-import com.mycompany.electronicstore.model.MobileDevice;
-import java.util.List;
-import org.springframework.stereotype.Service;
-
 /**
  *
  * @author dmytr
  */
-@Service
 public interface MobileDeviceService extends ITCommodityService {
     
     String getByCriterias(double minPrice,double maxPrice,String screenSize,

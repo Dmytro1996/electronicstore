@@ -30,7 +30,7 @@ public class AccesorieServiceImpl implements AccesorieService{
         return toHTML(acc);
     }
 
-    public String getAll(){
+    public String getAllAsHTML(){
         return toHTML(accRepo.findAll());
     }
 
@@ -38,5 +38,9 @@ public class AccesorieServiceImpl implements AccesorieService{
         if(names==null){return acc;}
         return acc.stream().filter(a->Arrays.asList(names).contains(""+a.getName()))
                 .collect(Collectors.toList());
-    }    
+    }
+
+    public List<Accesorie> getAll(){
+        return accRepo.findAll();
+    }   
 }

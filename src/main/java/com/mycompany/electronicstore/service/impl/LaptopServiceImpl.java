@@ -34,7 +34,11 @@ public class LaptopServiceImpl implements LaptopService {
         return toHTML(laptops);
     }
     
-    public String getAll(){
+    public String getAllAsHTML(){
         return toHTML(laptopRepo.findAll());
-    }  
+    } 
+    
+    public List<Laptop> getAll(){
+        return laptopRepo.findAll();
+    }
 }

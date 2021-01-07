@@ -35,8 +35,12 @@ public class TvServiceImpl implements TelevisionService {
         return toHTML(tvs);
     }
     
-    public String getAll(){
+    public String getAllAsHTML(){
         return toHTML(tvRepo.findAll());
+    }
+    
+    public List<Television> getAll(){
+        return tvRepo.findAll();
     }
     
     private List<Television> sortBySmartTv(List<Television> tvs,String[] smartTv){

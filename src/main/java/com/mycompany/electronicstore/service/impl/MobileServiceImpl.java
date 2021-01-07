@@ -44,8 +44,12 @@ public class MobileServiceImpl implements MobileDeviceService {
     }   
         
     @Override
-    public String getAll(){
+    public String getAllAsHTML(){
         return toHTML(mobileRepo.findAll());
+    }  
+        
+    public List<MobileDevice> getAll(){
+        return mobileRepo.findAll();
     }
     
     private List<MobileDevice> sortByExtMem(List<MobileDevice> mobiles,String extMem){

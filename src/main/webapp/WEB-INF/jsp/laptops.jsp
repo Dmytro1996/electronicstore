@@ -41,46 +41,51 @@
                 <label>Screensize:</label><br>                
                 <select id="screenSize" name="screenSize" value="All screenSizes">
                     <option>All screensizes</option>
-                    <option>10</option>
+                    ${screenSizes}
+                    <!--<option>10</option>
                     <option>13</option>
                     <option>14</option>
                     <option>15</option>
-                    <option>17</option>               
+                    <option>17</option>-->               
                 </select><br>
                 <label>Brand:</label><br>
                 <select id="brand" name="brand" value="All brands">
                     <option>All brands</option>
-                    <option>Samsung</option>
+                    <!--<option>Samsung</option>
                     <option>Apple</option>
                     <option>Lenovo</option>
                     <option>Asus</option>
                     <option>Acer</option>
-                    <option>HP</option>
+                    <option>HP</option>-->
+                    ${brands}
                 </select><br>
               </div>
               <div id="resAndIntMemInput">
                 <label>Resolution:</label><br>
                 <select id="resolution" name="resolution" value="All resolutions">
                     <option>All resolutions</option>
-                    <option>HD</option>
+                    <!--<option>HD</option>
                     <option>FULL_HD</option>
                     <option>WQHD</option>
                     <option>UHD</option>
-                    <option>EIGHT_K</option>
+                    <option>EIGHT_K</option>-->
+                    ${resolutions}
                 </select><br>
                 <label>Internal memory:</label><br> 
                 <select id="intMem" name="intMem" value="All">
                     <option>All</option>
-                    <option>128</option>
+                    <!--<option>128</option>
                     <option>256</option>
                     <option>500</option>
                     <option>1000</option>
-                    <option>2000</option>
+                    <option>2000</option>-->
+                    ${internalMemories}
                 </select><br>
               </div>
               <div id="operatingMemoryInput">
                 <label>Operating memory:</label><br>
-                <input type="checkbox" name="operMem" value="4">
+                ${operMems}
+                <!--<input type="checkbox" name="operMem" value="4">
                 <label>4</label><br>
                 <input type="checkbox" name="operMem" value="8">
                 <label>8</label><br>
@@ -89,7 +94,7 @@
                 <input type="checkbox" name="operMem" value="16">
                 <label>16</label><br>
                 <input type="checkbox" name="operMem" value="32">
-                <label>32</label><br>
+                <label>32</label><br>-->
               </div>
               <input type="submit" value="Apply" id="apply">
           </form>

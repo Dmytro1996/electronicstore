@@ -36,7 +36,7 @@ public class MobileController {
     
     @GetMapping("/all")
     public String getAll(Model model){
-        model.addAttribute("mobiles", mobileService.getAll());
+        model.addAttribute("mobiles", mobileService.getAllAsHTML());
         return "mobile";
     }
     

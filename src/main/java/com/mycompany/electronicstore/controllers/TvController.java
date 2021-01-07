@@ -27,7 +27,7 @@ public class TvController {
     
     @GetMapping("/all")
     public String all(Model model){
-        model.addAttribute("tvs", tvService.getAll());
+        model.addAttribute("tvs", tvService.getAllAsHTML());
         return "tv";
     }
     

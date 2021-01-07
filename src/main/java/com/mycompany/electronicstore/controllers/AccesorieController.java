@@ -27,7 +27,7 @@ public class AccesorieController {
     
     @GetMapping("/all")
     public String getAll(Model model){
-       model.addAttribute("acc", accService.getAll());
+       model.addAttribute("acc", accService.getAllAsHTML());
        return "accesories";
     }
     

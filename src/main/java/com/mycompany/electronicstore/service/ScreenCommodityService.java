@@ -33,4 +33,14 @@ public interface ScreenCommodityService extends CommodityService {
         }
         return comms;
     }
+    
+    public default <T extends ScreenCommodity> List<String> getScreenSizes(){
+        return getAll().stream().map(c->"<option>"+((ScreenCommodity)c).getScreenSize()+"</option>")
+                .distinct().sorted().collect(Collectors.toList());
+    }
+    
+    public default <T extends ScreenCommodity> List<String> getResolutions(){
+        return getAll().stream().map(c->"<option>"+((ScreenCommodity)c).getRes()+"</option>")
+                .distinct().sorted().collect(Collectors.toList());
+    }
 }

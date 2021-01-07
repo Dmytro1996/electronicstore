@@ -15,7 +15,9 @@ import java.util.stream.Collectors;
  */
 public interface CommodityService {
     
-    String getAll();
+    String getAllAsHTML();
+    
+    <T extends Commodity> List<T> getAll();
     
     public default <T extends Commodity> List<T> sortByBrand(List<T> comms,String brand){
         if(!brand.equals("All brands")){
@@ -23,6 +25,11 @@ public interface CommodityService {
                     .collect(Collectors.toList());
         }
         return comms;
+    }
+    
+    public default <T extends Commodity> List<String> getBrands(){
+        return getAll().stream().map(c->"<option>"+c.getBrand().getName()+"</option>")
+                .distinct().sorted().collect(Collectors.toList());
     }
     
     public default <T extends Commodity> String toHTML(List<T> comms){

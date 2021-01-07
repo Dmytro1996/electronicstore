@@ -27,12 +27,22 @@ public class LaptopController {
     
     @GetMapping("/all")
     private String getAll(Model model){
-        model.addAttribute("laptops", laptopService.getAll());
+        model.addAttribute("brands",laptopService.getBrands());
+        model.addAttribute("screenSizes",laptopService.getScreenSizes());
+        model.addAttribute("resolutions",laptopService.getResolutions());
+        model.addAttribute("internalMemories",laptopService.getIntMems());
+        model.addAttribute("operMems", laptopService.getOperMems());
+        model.addAttribute("laptops",laptopService.getAllAsHTML());
         return "laptops";
     }
     
     @PostMapping("/filter")
     private String getFiltered(Model model,HttpServletRequest request){
+        model.addAttribute("brands",laptopService.getBrands());
+        model.addAttribute("screenSizes",laptopService.getScreenSizes());
+        model.addAttribute("resolutions",laptopService.getResolutions());
+        model.addAttribute("internalMemories",laptopService.getIntMems());
+        model.addAttribute("operMems", laptopService.getOperMems());
         model.addAttribute("laptops", laptopService.getByCriterias(Double.valueOf(request.getParameter("minPrice")),
                 Double.valueOf(request.getParameter("maxPrice")), request.getParameter("screenSize"), 
                 request.getParameter("brand"), request.getParameter("resolution"),

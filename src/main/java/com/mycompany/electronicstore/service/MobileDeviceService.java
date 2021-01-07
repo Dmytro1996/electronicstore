@@ -5,6 +5,10 @@
  */
 package com.mycompany.electronicstore.service;
 
+import com.mycompany.electronicstore.model.MobileDevice;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  *
  * @author dmytr
@@ -12,6 +16,11 @@ package com.mycompany.electronicstore.service;
 public interface MobileDeviceService extends ITCommodityService {
     
     String getByCriterias(double minPrice,double maxPrice,String screenSize,
-           String brand,/*String resolution,*/String[] operMem,String intMem,String extMem,
-           String camera,String[] simCount,String[] gps);    
+           String brand,String[] operMem,String intMem,String extMem,
+           String camera,String[] simCount,String[] gps);
+
+    public default List<String> getExtMems(){
+        return getAll().stream().map(c->"<option>"+((MobileDevice)c).getExtMem()+"</option>")
+                .distinct().sorted().collect(Collectors.toList());
+    }    
 }

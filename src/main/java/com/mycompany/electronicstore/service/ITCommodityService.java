@@ -36,4 +36,15 @@ public interface ITCommodityService extends ScreenCommodityService {
         }
         return comms;
     }
+    
+    public default <T extends ITCommodity> List<String> getIntMems(){
+        return getAll().stream().map(c->"<option>"+((ITCommodity)c).getIntMem()+"</option>")
+                .distinct().sorted().collect(Collectors.toList());
+    }
+    
+    public default <T extends ITCommodity> String getOperMems(){
+        return getAll().stream().map(c->"<input type=\"checkbox\" name=\"operMem\" value=\""
+                +((ITCommodity)c).getOperMem()+"\"><label>"+((ITCommodity)c).getOperMem()+"</label><br>")
+                .distinct().sorted().collect(Collectors.joining());
+    }
 }

@@ -27,7 +27,7 @@ public interface CommodityService {
         return comms;
     }
     
-    public default <T extends Commodity> List<String> getBrands(){
+    public default List<String> getBrands(){
         return getAll().stream().map(c->"<option>"+c.getBrand().getName()+"</option>")
                 .distinct().sorted().collect(Collectors.toList());
     }

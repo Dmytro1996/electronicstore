@@ -26,8 +26,8 @@ public interface ITCommodityService extends ScreenCommodityService {
         if(intMem==null || intMem.equals("All")){return laptops;}
         return laptops.stream().filter(l->l.getIntMem()==Integer.parseInt(intMem))
                 .collect(Collectors.toList());
-    }    
-    
+    }  
+        
     public default <T extends ITCommodity> List<T> sortByScreenSize(
             List<T> comms,double screenSize){
         if(screenSize!=0){
@@ -37,12 +37,18 @@ public interface ITCommodityService extends ScreenCommodityService {
         return comms;
     }
     
-    public default <T extends ITCommodity> List<String> getIntMems(){
+    @Override
+    public default List<String> getScreenSizes(){
+        return getAll().stream().map(c->"<option>"+((ITCommodity)c).getScreenSize()+"</option>")
+                .distinct().sorted().collect(Collectors.toList());
+    }
+    
+    public default List<String> getIntMems(){
         return getAll().stream().map(c->"<option>"+((ITCommodity)c).getIntMem()+"</option>")
                 .distinct().sorted().collect(Collectors.toList());
     }
     
-    public default <T extends ITCommodity> String getOperMems(){
+    public default String getOperMems(){
         return getAll().stream().map(c->"<input type=\"checkbox\" name=\"operMem\" value=\""
                 +((ITCommodity)c).getOperMem()+"\"><label>"+((ITCommodity)c).getOperMem()+"</label><br>")
                 .distinct().sorted().collect(Collectors.joining());

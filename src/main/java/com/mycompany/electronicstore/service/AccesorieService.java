@@ -7,6 +7,7 @@ package com.mycompany.electronicstore.service;
 
 import com.mycompany.electronicstore.model.Accesorie;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -14,5 +15,12 @@ import java.util.List;
  */
 public interface AccesorieService extends CommodityService {
     String getByCriterias(double minPrice,double maxPrice,
-           String brand,String[] name);    
+           String brand,String[] name);
+
+    public default String getTypes(){
+        return getAll().stream().map(c->"<div><label>"+((Accesorie)c).getName()
+                +"</label><input type=\"checkbox\" name=\"type\" value=\""
+                +((Accesorie)c).getName()+"\"></div>")
+                .distinct().sorted().collect(Collectors.joining());
+    }    
 }

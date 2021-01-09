@@ -5,16 +5,16 @@
  */
 package com.mycompany.electronicstore.repository;
 
+import com.mycompany.electronicstore.model.Brand;
 import com.mycompany.electronicstore.model.Resolution;
 import com.mycompany.electronicstore.model.Television;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 /**
  *
@@ -23,7 +23,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
-//@SpringBootTest
 public class TelevisionRepositoryTest {
     
     @Autowired
@@ -34,7 +33,19 @@ public class TelevisionRepositoryTest {
     
     @Test
     public void findByCriteriaTest(){
-        Television tv=tvRepo.findById(1L).get();        
-        assertEquals(tv.toString(),tvRepo.findByPrice(tv.getPrice()-1, tv.getPrice()+1).get(0).toString());
+        Television tv=new Television();
+        Brand brand=new Brand();
+        brand.setName("SomeBrand");
+        entityManager.persist(brand);
+        tv.setBrand(brand);
+        tv.setPrice(15000);
+        tv.setRes(Resolution.QHD);
+        tv.setModel("UE5500");
+        tv.setScreenSize(40);
+        tv.setSmartTv(true);
+        tv.setThreeD(true);
+        entityManager.persist(tv);               
+        assertTrue(tvRepo.findByPrice(999, 1001).stream().map(c->c.toString())
+                .anyMatch(c->c.equals(tv.toString())));
     }
 }

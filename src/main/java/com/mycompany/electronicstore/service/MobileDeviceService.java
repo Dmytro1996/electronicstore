@@ -22,5 +22,10 @@ public interface MobileDeviceService extends ITCommodityService {
     public default List<String> getExtMems(){
         return getAll().stream().map(c->"<option>"+((MobileDevice)c).getExtMem()+"</option>")
                 .distinct().sorted().collect(Collectors.toList());
+    }
+
+    public default List<String> getCameras(){
+        return getAll().stream().map(c->"<option>"+((MobileDevice)c).getCamera()+"</option>")
+                .distinct().sorted().collect(Collectors.toList());
     }    
 }

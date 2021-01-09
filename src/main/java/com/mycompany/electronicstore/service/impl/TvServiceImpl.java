@@ -28,7 +28,11 @@ public class TvServiceImpl implements TelevisionService {
         List<Television> tvs=tvRepo.findByPrice(minPrice,maxPrice);                
         tvs=sortByBrand(tvs,brand);
         if(!screenSize.equals("All screensizes")){
-            tvs=sortByScreenSize(tvs,screenSize.split("-"));}
+            if(screenSize.equals(">70")){                
+                tvs=sortByScreenSize(tvs,new String[]{"70","1000"});
+            } else{            
+                tvs=sortByScreenSize(tvs,screenSize.split("-"));}
+        }
         tvs=sortByResolution(tvs,resolution);
         tvs=sortBySmartTv(tvs,smartTv);
         tvs=sortByThreeD(tvs,threeD);

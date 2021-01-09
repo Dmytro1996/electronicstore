@@ -41,30 +41,33 @@
               <label>Screensize:</label><br>            
               <select id="screenSizeRange" name="screenSizeRange">
                   <option>All screensizes</option>
-                  <option>22-30</option>
+                  <!--<option>22-30</option>
                   <option>30-40</option>
                   <option>40-50</option>
                   <option>50-60</option>
-                  <option>60-70</option>
-                  <option>70</option>
+                  <option>60-70</option>-->
+                  ${screenSizes}
+                  <option>>70</option>
               </select><br>
               <label>Brand:</label><br>            
               <select id="brands" name="brand" value="All brands">
                   <option>All brands</option>
-                  <option>Samsung</option>
+                  <!--<option>Samsung</option>
                   <option>LG</option>
-                  <option>Sony</option>
+                  <option>Sony</option>-->
+                  ${brands}
               </select><br>
             </div>
             <div id="resAndSmartTvInput">
               <label>Resolution:</label><br> 
               <select id="resolution" name="resolution" value="All resolutions">
                   <option>All resolutions</option>
-                  <option>HD</option>
+                  <!--<option>HD</option>
                   <option>FULL_HD</option>
                   <option>WQHD</option>
                   <option>UHD</option>
-                  <option>EIGHT_K</option>
+                  <option>EIGHT_K</option>-->
+                  ${resolutions}
               </select><br>
               <label>Smart TV:</label><br>
               <label>Yes</label><br>

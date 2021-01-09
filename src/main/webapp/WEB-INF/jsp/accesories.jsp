@@ -41,15 +41,16 @@
               <label>Brand:</label><br>            
               <select id="brand" name="brand" value="All brands">
                   <option>All brands</option>
-                  <option>KOSS</option>
+                  <!--<option>KOSS</option>
                   <option>Logitech</option>
                   <option>Ergo</option>
-                  <option>Belkin</option>
+                  <option>Belkin</option>-->
+                  ${brands}
               </select><br>
             </div>
             <div id="typeInput">
               <label id="typeLabel">Type:</label>
-              <div id="computer_mouse">            
+              <!--<div id="computer_mouse">            
                 <label>Computer mouse</label>
                 <input type="checkbox" name="names" value="Computer mouse">
               </div>
@@ -64,7 +65,8 @@
               <div id="bag">
                 <label>Bag for laptop</label><br>
                 <input type="checkbox" name="names" value="Bag for laptop">
-              </div>
+              </div>-->
+              ${types}
             </div>
             <input type="submit" id="apply" value="Apply">
           </form>

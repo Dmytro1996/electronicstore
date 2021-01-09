@@ -7,6 +7,8 @@ package com.mycompany.electronicstore.controllers;
 
 import com.mycompany.electronicstore.service.TelevisionService;
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,17 +24,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/tv")
 public class TvController {
     
+    Logger logger=LoggerFactory.getLogger(TvController.class);
     @Autowired
     TelevisionService tvService;
     
     @GetMapping("/all")
     public String all(Model model){
+        logger.info(tvService.getScreenSizes().toString());
+        model.addAttribute("brands",tvService.getBrands());
+        model.addAttribute("screenSizes",tvService.getScreenSizes());
+        model.addAttribute("resolutions",tvService.getResolutions());
         model.addAttribute("tvs", tvService.getAllAsHTML());
         return "tv";
     }
     
     @PostMapping("/filter")
     public String filter(Model model,HttpServletRequest request){
+        model.addAttribute("brands",tvService.getBrands());
+        model.addAttribute("screenSizes",tvService.getScreenSizes());
+        model.addAttribute("resolutions",tvService.getResolutions());
         model.addAttribute("tvs", tvService.getByCriterias(Double.valueOf(request.getParameter("minPrice")),
                 Double.valueOf(request.getParameter("maxPrice")), request.getParameter("screenSizeRange"), 
                 request.getParameter("brand"), request.getParameter("resolution"), 

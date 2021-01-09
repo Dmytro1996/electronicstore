@@ -17,15 +17,8 @@ import org.springframework.stereotype.Repository;
  * @author dmytr
  */
 @Repository
-public interface LaptopRepository extends JpaRepository<Laptop,Long> {
+public interface LaptopRepository extends JpaRepository<Laptop,Long> {    
     
-    /*@Query(value="select * from laptops l where l.screen_size=:screenSize  and l.brand_id=brandId"
-            + "l.resolution=:resolution and l.oper_memory=:operMem and l.internal_memory=:intMem"
-            + " and (l.price between :minPrice and :maxPrice)",nativeQuery=true)
-    public List<LaptopModel> findByCriterias(@Param("minPrice")double minPrice,
-            @Param("maxPrice")double maxPrice,@Param("screen_size")double screenSize,
-            @Param("resolution")String resolution,@Param("brandId")int brandId,
-            @Param("operMem")int operMem,@Param("intMem")int intMem);*/
     @Query(value="select * from laptops l where (l.price between :minPrice and :maxPrice)",
             nativeQuery=true)
     public List<Laptop> findByPrice(@Param("minPrice")double minPrice,

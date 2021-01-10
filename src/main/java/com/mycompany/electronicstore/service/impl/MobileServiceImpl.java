@@ -9,6 +9,7 @@ import com.mycompany.electronicstore.model.ITCommodity;
 import com.mycompany.electronicstore.model.MobileDevice;
 import com.mycompany.electronicstore.repository.MobileDeviceRepository;
 import com.mycompany.electronicstore.service.MobileDeviceService;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
@@ -64,7 +65,7 @@ public class MobileServiceImpl implements MobileDeviceService {
     }
     
     private List<MobileDevice> sortBySimCount(List<MobileDevice> mobiles,String[] simCount){
-        if(simCount==null || simCount.equals("Any")){return mobiles;}
+        if(simCount==null || Arrays.asList(simCount).contains("Any")){return mobiles;}
         return mobiles.stream().filter(m->m.getSimCount()==Integer.parseInt(simCount[0]))
                 .collect(Collectors.toList());
     }

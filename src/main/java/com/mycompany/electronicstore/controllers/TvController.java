@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -29,7 +31,7 @@ public class TvController {
     TelevisionService tvService;
     
     @GetMapping("/all")
-    public String all(Model model){
+    public String getAll(Model model){
         logger.info(tvService.getScreenSizes().toString());
         model.addAttribute("brands",tvService.getBrands());
         model.addAttribute("screenSizes",tvService.getScreenSizes());
@@ -39,13 +41,15 @@ public class TvController {
     }
     
     @PostMapping("/filter")
-    public String filter(Model model,HttpServletRequest request){
+    public String filter(Model model, @RequestParam("minPrice")String minPrice, 
+            @RequestParam("maxPrice")String maxPrice, @RequestParam("brand")String brand, 
+            @RequestParam("screenSizeRange")String screenSizeRange,@RequestParam("resolution")String resolution, 
+            HttpServletRequest request){
         model.addAttribute("brands",tvService.getBrands());
         model.addAttribute("screenSizes",tvService.getScreenSizes());
         model.addAttribute("resolutions",tvService.getResolutions());
-        model.addAttribute("tvs", tvService.getByCriterias(Double.valueOf(request.getParameter("minPrice")),
-                Double.valueOf(request.getParameter("maxPrice")), request.getParameter("screenSizeRange"), 
-                request.getParameter("brand"), request.getParameter("resolution"), 
+        model.addAttribute("tvs", tvService.getByCriterias(Double.valueOf(minPrice),
+                Double.valueOf(maxPrice), screenSizeRange, brand, resolution, 
                 request.getParameterValues("smartTv"), request.getParameterValues("threeD")));
         return "tv";
     }

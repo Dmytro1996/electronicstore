@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -48,7 +49,11 @@ public class MobileController {
     }
     
     @PostMapping("/filter")
-    public String getFiltered(Model model,HttpServletRequest request){
+    public String getFiltered(Model model, @RequestParam("minPrice")String minPrice,
+            @RequestParam("maxPrice")String maxPrice, @RequestParam("brand")String brand,
+            @RequestParam("screenSize")String screenSize, 
+            @RequestParam("intMem")String intMem,@RequestParam("extMem")String extMem,
+            @RequestParam("camera")String camera,HttpServletRequest request){
         logger.info(request.getParameter("minPrice"));
         logger.info(request.getParameter("screenSize"));
         logger.info(request.getParameter("brand"));
@@ -63,11 +68,9 @@ public class MobileController {
         model.addAttribute("operMems", mobileService.getOperMems());
         model.addAttribute("externalMemories",mobileService.getExtMems());
         model.addAttribute("cameras",mobileService.getCameras());
-        model.addAttribute("mobiles", mobileService.getByCriterias(Double.valueOf(request.getParameter("minPrice")),
-                Double.valueOf(request.getParameter("maxPrice")), request.getParameter("screenSize"), 
-                request.getParameter("brand"),/* request.getParameter("resolution"),*/
-                request.getParameterValues("operMem"),request.getParameter("intMem"), 
-                request.getParameter("extMem"), request.getParameter("camera"),
+        model.addAttribute("mobiles", mobileService.getByCriterias(Double.valueOf(minPrice),
+                Double.valueOf(maxPrice), screenSize, brand,
+                request.getParameterValues("operMem"),intMem, extMem, camera,
                 request.getParameterValues("simCount"),request.getParameterValues("gps")));
         return "mobile";
     }

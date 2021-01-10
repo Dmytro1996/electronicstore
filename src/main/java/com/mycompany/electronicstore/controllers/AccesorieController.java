@@ -6,6 +6,7 @@
 package com.mycompany.electronicstore.controllers;
 
 import com.mycompany.electronicstore.service.AccesorieService;
+import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -38,10 +40,11 @@ public class AccesorieController {
     }
     
     @PostMapping("/filter")
-    public String getFiltered(Model model,HttpServletRequest request){
-        model.addAttribute("acc", accService.getByCriterias(Double.valueOf(request.getParameter("minPrice")),
-                Double.valueOf(request.getParameter("maxPrice")),
-                request.getParameter("brand"), request.getParameterValues("names")));
+    public String getFiltered(Model model, @RequestParam("minPrice")String minPrice,
+            @RequestParam("maxPrice")String maxPrice, @RequestParam("brand")String brand,
+            HttpServletRequest request){        
+        model.addAttribute("acc", accService.getByCriterias(Double.valueOf(minPrice),
+                Double.valueOf(maxPrice),brand, request.getParameterValues("type")));
         return "accesories";
     }
 }

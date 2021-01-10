@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -37,16 +38,18 @@ public class LaptopController {
     }
     
     @PostMapping("/filter")
-    private String getFiltered(Model model,HttpServletRequest request){
+    private String getFiltered(Model model, @RequestParam("minPrice")String minPrice,
+            @RequestParam("maxPrice")String maxPrice, @RequestParam("brand")String brand,
+            @RequestParam("screenSize")String screenSize,@RequestParam("resolution")String resolution, 
+            @RequestParam("intMem")String intMem,HttpServletRequest request){
         model.addAttribute("brands",laptopService.getBrands());
         model.addAttribute("screenSizes",laptopService.getScreenSizes());
         model.addAttribute("resolutions",laptopService.getResolutions());
         model.addAttribute("internalMemories",laptopService.getIntMems());
         model.addAttribute("operMems", laptopService.getOperMems());
-        model.addAttribute("laptops", laptopService.getByCriterias(Double.valueOf(request.getParameter("minPrice")),
-                Double.valueOf(request.getParameter("maxPrice")), request.getParameter("screenSize"), 
-                request.getParameter("brand"), request.getParameter("resolution"),
-                request.getParameterValues("operMem"),request.getParameter("intMem")));
+        model.addAttribute("laptops", laptopService.getByCriterias(Double.valueOf(minPrice),
+                Double.valueOf(maxPrice), screenSize, brand, resolution,
+                request.getParameterValues("operMem"),intMem));
         return "laptops";
     }
 }

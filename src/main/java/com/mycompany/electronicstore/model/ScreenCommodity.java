@@ -8,9 +8,9 @@ package com.mycompany.electronicstore.model;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 /**
  *
@@ -18,9 +18,11 @@ import javax.persistence.MappedSuperclass;
  */
 @MappedSuperclass
 public abstract class ScreenCommodity extends Commodity{
-  @Column(name="screen_size")
+  @Column(name="screen_size")  
+  @Positive
   private double screenSize;
   @Column(name="resolution")
+  @NotNull
   @Enumerated(EnumType.STRING)
   private Resolution res;
 

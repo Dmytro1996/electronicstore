@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
@@ -26,6 +27,7 @@ public class Brand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
+    @NotNull
     @Pattern(regexp = "^[A-Z]+((\\s?)[a-zA-Z])+",
             message = "Wrong brand name.Must start with a capital letter followed by one or more lowercase letters")
     private String name;

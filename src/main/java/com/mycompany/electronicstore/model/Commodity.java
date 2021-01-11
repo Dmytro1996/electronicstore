@@ -14,7 +14,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 /**
  *
  * @author dmytr
@@ -24,7 +26,8 @@ import javax.validation.constraints.Pattern;
 public abstract class Commodity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;    
+    private long id;
+    @NotNull    
     @ManyToOne
     @JoinColumn(name="brand_id")
     private Brand brand;
@@ -33,6 +36,7 @@ public abstract class Commodity {
             message = "Wrong model.Must start with a capital letter followed by one or more lowercase letters")
     private String model;
     @Column
+    @Positive
     private double price;
 
     public Commodity() {}    

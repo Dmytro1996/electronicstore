@@ -38,7 +38,7 @@ public class TelevisionRepositoryTest {
         brand.setName("SomeBrand");
         entityManager.persist(brand);
         tv.setBrand(brand);
-        tv.setPrice(15000);
+        tv.setPrice(1000);
         tv.setRes(Resolution.QHD);
         tv.setModel("UE5500");
         tv.setScreenSize(40);

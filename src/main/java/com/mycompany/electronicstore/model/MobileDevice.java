@@ -5,14 +5,13 @@
  */
 package com.mycompany.electronicstore.model;
 
-/*import electronicstore.exceptions.BooleanException;
-import electronicstore.exceptions.NumericValueException;
-import electronicstore.exceptions.ResolutionException;
-import electronicstore.exceptions.StringFieldException;
-import electronicstore.exceptions.SimCountException;*/
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 /**
  *
@@ -22,10 +21,14 @@ import javax.persistence.Table;
 @Table(name="mobile_devices")
 public class MobileDevice extends ITCommodity {
     @Column(name="external_memory")
+    @PositiveOrZero
     private int extMem;
     @Column(name="sim_count")
+    @Min(0)
+    @Max(2)
     private int simCount;
     @Column
+    @Positive
     private int camera;
     @Column
     private boolean gps;

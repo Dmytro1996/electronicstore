@@ -26,7 +26,7 @@ public class AccesorieServiceImpl implements AccesorieService{
     public String getByCriterias(double minPrice,double maxPrice,String brand,String[] name){
         List<Accesorie> acc=accRepo.findByPrice(minPrice, maxPrice);
         acc=sortByBrand(acc,brand);
-        acc=sortByName(acc,name);
+        acc=sortByType(acc,name);
         return toHTML(acc);
     }
 
@@ -34,9 +34,9 @@ public class AccesorieServiceImpl implements AccesorieService{
         return toHTML(accRepo.findAll());
     }
 
-    private List<Accesorie> sortByName(List<Accesorie> acc,String[] names){
+    private List<Accesorie> sortByType(List<Accesorie> acc,String[] names){
         if(names==null){return acc;}
-        return acc.stream().filter(a->Arrays.asList(names).contains(""+a.getName()))
+        return acc.stream().filter(a->Arrays.asList(names).contains(""+a.getType()))
                 .collect(Collectors.toList());
     }
 

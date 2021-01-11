@@ -39,7 +39,7 @@ public class AccesorieRepositoryTests {
         entityManager.persist(brand);
         acc.setBrand(brand);
         acc.setPrice(1000);        
-        acc.setName("Keyboard");
+        acc.setType("Keyboard");
         acc.setShortDescription("Good keyboard");
         entityManager.persist(acc);               
         assertTrue(accRepo.findByPrice(999, 1001).stream().map(c->c.toString())

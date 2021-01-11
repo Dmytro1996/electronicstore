@@ -5,13 +5,10 @@
  */
 package com.mycompany.electronicstore.model;
 
-import java.util.Scanner;
+
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Table;
+import javax.validation.constraints.Positive;
 
 /**
  *
@@ -20,8 +17,10 @@ import javax.persistence.Table;
 @MappedSuperclass
 public abstract class ITCommodity extends ScreenCommodity {
   @Column(name="oper_memory")
+  @Positive
   private int operMem;
   @Column(name="internal_memory")
+  @Positive
   private int intMem;
     public ITCommodity(){
       super();

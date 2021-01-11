@@ -12,6 +12,7 @@ import electronicstore.exceptions.StringFieldException;*/
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 /**
  *
@@ -21,9 +22,10 @@ import javax.validation.constraints.Pattern;
 @Table(name="Accesories")
 public class Accesorie extends Commodity{
     @Column
+    @NotNull
     @Pattern(regexp = "[A-Z][a-z]+",
             message = "Wrong accesorie name.Must start with a capital letter followed by one or more lowercase letters")
-    private String name;
+    private String type;
     @Column(name="short_description")
     private String shortDescription;
     
@@ -31,16 +33,16 @@ public class Accesorie extends Commodity{
       super();
     }   
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
     public String getShortDescription() {
         return shortDescription;
     }
 
-    public void setName(String name){        
-        this.name = name;
+    public void setType(String type){        
+        this.type = type;
     }
 
     public void setShortDescription(String shortDescription){        
@@ -48,18 +50,18 @@ public class Accesorie extends Commodity{
     }
     
     public String toString(){
-      return name+" "+getBrand().getName()+" "+getModel()+" Price"+getPrice()
+      return type+" "+getBrand().getName()+" "+getModel()+" Price"+getPrice()
               +" Short Description: "+shortDescription;
     }
 
     public String addImage(){
-        return "<img src=\"\\images\\acc-"+getName().toLowerCase()+
-              ".jpg\" alt=\""+getName()+" "+getBrand().getName()+" "
+        return "<img src=\"\\images\\acc-"+getType().toLowerCase()+
+              ".jpg\" alt=\""+getType()+" "+getBrand().getName()+" "
               +getModel()+"\">";
     }
 
     public String toHTML(){
-      return "<p id=\"accType\">"+name+"</p>"
+      return "<p id=\"accType\">"+type+"</p>"
               +"<p id=\"brandModel\">"+getBrand().getName()+" "+getModel()+"</p>"
               +"<p id=\"shortDesc\">Short description::"+shortDescription+"</p>"              
               +"<p id=\"price\">Price:"+getPrice()+"</p>" 

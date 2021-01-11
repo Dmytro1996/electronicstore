@@ -7,14 +7,9 @@ package com.mycompany.service.impl;
 
 import com.mycompany.electronicstore.model.Accesorie;
 import com.mycompany.electronicstore.model.Brand;
-import com.mycompany.electronicstore.model.Resolution;
-import com.mycompany.electronicstore.model.Television;
 import com.mycompany.electronicstore.repository.AccesorieRepository;
-import com.mycompany.electronicstore.repository.TelevisionRepository;
 import com.mycompany.electronicstore.service.AccesorieService;
-import com.mycompany.electronicstore.service.TelevisionService;
 import com.mycompany.electronicstore.service.impl.AccesorieServiceImpl;
-import com.mycompany.electronicstore.service.impl.TvServiceImpl;
 import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,7 +53,7 @@ public class AccesorieServiceTests {
         acc.setBrand(brand);
         acc.setModel("SomeModel");
         acc.setPrice(10000);
-        acc.setName("Keyboard");
+        acc.setType("Keyboard");
         acc.setShortDescription("Good keyboard");
         Mockito.when(accRepo.findByPrice(acc.getPrice()-1,acc.getPrice()+1))
                 .thenReturn(Arrays.asList(acc));
@@ -72,7 +67,7 @@ public class AccesorieServiceTests {
         String expected="<div id=\"commodityRow\"><div class=\"comm"+acc.getId()
                 +"\" id=\"commodity\">"+acc.addImage()+acc.toHTML()+"</div></div>";
         assertEquals(expected,accService.getByCriterias(acc.getPrice()-1, acc.getPrice()+1,
-                acc.getBrand().getName(),new String[]{String.valueOf(acc.getName())}));
+                acc.getBrand().getName(),new String[]{String.valueOf(acc.getType())}));
     }
     
     @Test
@@ -89,9 +84,9 @@ public class AccesorieServiceTests {
     
     @Test
     public void getTypes(){
-        String expected="<div><label>"+acc.getName()
+        String expected="<div><label>"+acc.getType()
                 +"</label><input type=\"checkbox\" name=\"type\" value=\""
-                +acc.getName()+"\"></div>";
+                +acc.getType()+"\"></div>";
         assertEquals(expected,accService.getTypes());
     }
 }

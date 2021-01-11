@@ -58,7 +58,7 @@ external_memory,sim_count,camera,gps,brand_id) VALUES(7,"16",5300,6,"WQHD",6,128
 INSERT INTO mobile_devices(id,model,price,screen_size,resolution,oper_memory,internal_memory,
 external_memory,sim_count,camera,gps,brand_id) VALUES(8,"Redmi Note 9",7000,6,"WQHD",6,128,0,2,64,true,7);
 
-INSERT INTO Accesories(id,model,price,name,short_description,brand_id) VALUES(1,"U20",300,"Earphones","Good earphones",9);
-INSERT INTO Accesories(id,model,price,name,short_description,brand_id) VALUES(2,"M180",600,"Computer mouse","Good computer mouse",10);
-INSERT INTO Accesories(id,model,price,name,short_description,brand_id) VALUES(3,"U20",900,"Keyboard","Good keyboard",10);
-INSERT INTO Accesories(id,model,price,name,short_description,brand_id) VALUES(4,"U20",900,"Bag for laptop","Good bag",11);
+INSERT INTO Accesories(id,model,price,type,short_description,brand_id) VALUES(1,"U20",300,"Earphones","Good earphones",9);
+INSERT INTO Accesories(id,model,price,type,short_description,brand_id) VALUES(2,"M180",600,"Computer mouse","Good computer mouse",10);
+INSERT INTO Accesories(id,model,price,type,short_description,brand_id) VALUES(3,"U20",900,"Keyboard","Good keyboard",10);
+INSERT INTO Accesories(id,model,price,type,short_description,brand_id) VALUES(4,"U20",900,"Bag for laptop","Good bag",11);

@@ -18,9 +18,9 @@ public interface AccesorieService extends CommodityService {
            String brand,String[] name);
 
     public default String getTypes(){
-        return getAll().stream().map(c->"<div><label>"+((Accesorie)c).getName()
+        return getAll().stream().map(c->"<div><label>"+((Accesorie)c).getType()
                 +"</label><input type=\"checkbox\" name=\"type\" value=\""
-                +((Accesorie)c).getName()+"\"></div>")
+                +((Accesorie)c).getType()+"\"></div>")
                 .distinct().sorted().collect(Collectors.joining());
     }    
 }

@@ -27,11 +27,5 @@ public class Laptop extends ITCommodity {
               "<p id=\"internalMemory\">Internal memory:"+getIntMem()+"</p>"
               +"<p id=\"price\">Price:"+getPrice()+"</p>" 
               + "<input type=\"button\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">";
-    }
-    
-    public String addImage(){
-    return "<img src=\"\\images\\laptop-"+getBrand().getName().toLowerCase()+
-              ".jpg\" alt=\""+getBrand().getName()+" "+ getModel()+"\">";
-  }
-    
+    }    
 }

@@ -55,9 +55,10 @@ public class Accesorie extends Commodity{
     }
 
     public String addImage(){
-        return "<img src=\"\\images\\acc-"+getType().toLowerCase()+
-              ".jpg\" alt=\""+getType()+" "+getBrand().getName()+" "
-              +getModel()+"\">";
+        return "<img src=\"\\images\\acc-"+getType().toLowerCase()+"-"
+                +getBrand().getName().toLowerCase()+"-"+getModel().toLowerCase()+
+                ".jpg\" alt=\""+getType()+" "+getBrand().getName()+" "
+                +getModel()+"\">";
     }
 
     public String toHTML(){

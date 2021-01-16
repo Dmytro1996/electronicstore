@@ -73,8 +73,13 @@ public abstract class Commodity {
         this.id = id;
     }
     
-    public abstract String toHTML();
+    public String addImage(){
+         return "<img src=\"\\images\\"+getClass().getSimpleName().toLowerCase()+"-"
+                 +getBrand().getName().toLowerCase()+"-"
+                 +getModel().toLowerCase()+".jpg\" alt=\""+getBrand().getName()
+                 +" "+getModel()+"\">";    
+    }
     
-    public abstract String addImage();
-     
+    public abstract String toHTML(); 
+         
 }

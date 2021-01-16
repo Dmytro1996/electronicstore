@@ -42,12 +42,7 @@ public class Television extends ScreenCommodity {
               +" Screen:"+getScreenSize()+" "+getRes()+"SmartTV:"+isSmartTv()+" 3D:"+isThreeD();
     }
 
-    public String addImage(){
-        return "<img src=\"\\images\\tv-"+getBrand().getName().toLowerCase()+
-              ".jpg\" alt=\""+getBrand().getName()+" "+getModel()+"\">";
-    }
-
-     public String toHTML(){
+    public String toHTML(){
       return "<p id=\"brandModel\">"+getBrand().getName()+" "+getModel()+"</p>"
               +"<p id=\"screen\">ScreenSize:"+getScreenSize()
               +"</p>"+"<p id=\"res\">Resolution:"+getRes()+"</p>"+

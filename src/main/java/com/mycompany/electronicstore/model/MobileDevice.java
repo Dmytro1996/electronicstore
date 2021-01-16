@@ -85,19 +85,5 @@ public class MobileDevice extends ITCommodity {
               "<p id=\"gpsOutput\">Gps:"+isGps()+"</p>"
               +"<p id=\"price\">Price:"+getPrice()+"</p>" 
               + "<input type=\"button\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">";
-    }
-    
-    public String addImage(){
-    if(getBrand().getName().equals("Samsung") || getBrand().getName().equals("Apple"))
-      return "<img src=\"\\images\\mobileDevice-"+getBrand().getName().toLowerCase()+"-"
-            +getModel().toLowerCase()+".jpg\" alt=\""+getBrand().getName()
-              +" "+getModel()+"\">";
-    if(getBrand().equals("Huawei") || getBrand().getName().equals("Meizu") 
-            || getBrand().getName().equals("Xiaomi")){
-      return "<img src=\"\\images\\mobileDevice-"+getBrand().getName().toLowerCase()+
-              ".jpg\" alt=\""+getBrand().getName()+" "+getModel()+"\">";
-    }
-    return "<img src=\"\\images\\mobileDevice-smartphone.jpg\" alt=\""+getBrand().getName()
-            +" "+getModel()+"\">";
-  }
+    }    
 }

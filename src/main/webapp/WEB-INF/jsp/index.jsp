@@ -20,8 +20,8 @@
             </div>
         </div>
         <div id="links">
-          <a href="/tv/all"><img src="images/tv-sony.jpg" alt="TVs"><div>TVs</div></a>
-          <a href="/mobile/all"><img src="images/mobileDevice-smartphone.png" alt="Mobile phones"><div>Mobile phones</div></a>
+          <a href="/tv/all"><img src="images/television-sony-kd45xh80.jpg" alt="TVs"><div>TVs</div></a>
+          <a href="/mobile/all"><img src="images/mobiledevice-smartphone.png" alt="Mobile phones"><div>Mobile phones</div></a>
           <a href="/laptop/all"><img src="images/laptop-laptops.jpeg" alt="Laptops"><div>Laptops</div></a>
           <a href="acc/all"><img src="images/acc-accesories.jpg" alt="Accesories"><div>Accesories</div></a>
         </div>

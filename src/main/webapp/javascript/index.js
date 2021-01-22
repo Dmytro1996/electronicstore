@@ -83,6 +83,7 @@ function getCommodity(id){
 let openBasketBtn=document.getElementById('basket');
 let closeBasketBtn=document.getElementById('close');
 let overlay=document.getElementById('overlay');
+document.getElementById('send').addEventListener('click',clearBasket);
 openBasketBtn.addEventListener('click',()=>{
     let basket=document.getElementById('popup_window');
     openBasket(basket);
@@ -128,7 +129,11 @@ function createRemoveBtns(){
     var removeBtns=document.querySelectorAll('.remove');
     for(let i=0;i<removeBtns.length;i++){
       removeBtns[i].addEventListener('click',removeFromBasket);
+    }
 }
+
+function clearBasket(){    
+    sessionStorage.clear();
 }
 
 function calculateTotalSum(){

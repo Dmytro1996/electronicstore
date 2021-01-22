@@ -5,7 +5,9 @@
  */
 package com.mycompany.electronicstore.model;
 
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -15,9 +17,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name="laptops")
 public class Laptop extends ITCommodity {
-
+    
+    @ManyToMany(mappedBy="laptops")
+    private List<Order> orders;
+    
     public Laptop() {
         super();
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
     
     public String toHTML(){
@@ -26,6 +39,8 @@ public class Laptop extends ITCommodity {
               +"</p>"+"<p id=\"operatingMemory\">Operating memory:"+getOperMem()+"</p>"+
               "<p id=\"internalMemory\">Internal memory:"+getIntMem()+"</p>"
               +"<p id=\"price\">Price:"+getPrice()+"</p>" 
-              + "<input type=\"button\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">";
+              + "<form action=\"\\laptop\\buy\\"+getId()+"\" method=\"POST\">"
+              + "<input type=\"submit\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">"
+              + "</form>";
     }    
 }

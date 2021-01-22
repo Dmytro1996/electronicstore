@@ -5,8 +5,10 @@
  */
 package com.mycompany.electronicstore.model;
 //import electronicstore.exceptions.*;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 /**
  *
@@ -19,6 +21,8 @@ public class Television extends ScreenCommodity {
      private boolean threeD;      
      @Column(name="smart_tv")
      private boolean smartTv;
+     @ManyToMany(mappedBy="tvs")
+     private List<Order> orders;
 
     public Television(){}
     
@@ -30,12 +34,20 @@ public class Television extends ScreenCommodity {
         return smartTv;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     public void setThreeD(boolean threeD) {
         this.threeD = threeD;
     }
 
     public void setSmartTv(boolean smartTv) {
         this.smartTv = smartTv;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
     public String toString(){
       return getId()+" "+getBrand().getName()+" "+getModel()+" Price:"+getPrice()
@@ -49,6 +61,8 @@ public class Television extends ScreenCommodity {
               "<p id=\"smart_tv\">SmartTv:"+isSmartTv()+"</p>"+
               "<p id=\"3d\">3D:"+isThreeD()+"</p>"
               +"<p id=\"price\">Price:"+getPrice()+"</p>" 
-              + "<input type=\"button\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">";
+              + "<form action=\"\\tv\\buy\\"+getId()+"\" method=\"POST\">"
+              + "<input type=\"submit\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">"
+              + "</form>";
     }    
 }

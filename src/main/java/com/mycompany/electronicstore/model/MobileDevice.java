@@ -5,8 +5,10 @@
  */
 package com.mycompany.electronicstore.model;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -32,6 +34,9 @@ public class MobileDevice extends ITCommodity {
     private int camera;
     @Column
     private boolean gps;
+    @ManyToMany(mappedBy="mobiles")
+    private List<Order> orders;
+    
     public MobileDevice(){
         super();
     } 
@@ -52,6 +57,10 @@ public class MobileDevice extends ITCommodity {
         return gps;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     public void setExtMem(int extMem){       
         this.extMem = extMem;
     }
@@ -67,6 +76,11 @@ public class MobileDevice extends ITCommodity {
     public void setGps(boolean gps) {
         this.gps = gps;
     }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+    
     public String toString(){
       return getBrand().getName()+" "+getModel()+" Price: "+getPrice()+
               " ScreenSize:"+getScreenSize()+" Resolution:"+getRes()+
@@ -84,6 +98,8 @@ public class MobileDevice extends ITCommodity {
               "<p id=\"sim\">Sim cards:"+getSimCount()+"</p>"+
               "<p id=\"gpsOutput\">Gps:"+isGps()+"</p>"
               +"<p id=\"price\">Price:"+getPrice()+"</p>" 
-              + "<input type=\"button\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">";
+              +"<form action=\"\\mobile\\buy\\"+getId()+"\" method=\"POST\">"
+              + "<input type=\"submit\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">"
+              + "</form>";
     }    
 }

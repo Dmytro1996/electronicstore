@@ -9,8 +9,10 @@ package com.mycompany.electronicstore.model;
 import electronicstore.exceptions.NumericValueException;
 import electronicstore.exceptions.ResolutionException;
 import electronicstore.exceptions.StringFieldException;*/
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -28,6 +30,8 @@ public class Accesorie extends Commodity{
     private String type;
     @Column(name="short_description")
     private String shortDescription;
+    @ManyToMany(mappedBy="acc")
+    private List<Order> orders;
     
     public Accesorie(){
       super();
@@ -41,12 +45,20 @@ public class Accesorie extends Commodity{
         return shortDescription;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     public void setType(String type){        
         this.type = type;
     }
 
     public void setShortDescription(String shortDescription){        
         this.shortDescription = shortDescription;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
     
     public String toString(){
@@ -66,6 +78,8 @@ public class Accesorie extends Commodity{
               +"<p id=\"brandModel\">"+getBrand().getName()+" "+getModel()+"</p>"
               +"<p id=\"shortDesc\">Short description::"+shortDescription+"</p>"              
               +"<p id=\"price\">Price:"+getPrice()+"</p>" 
-              + "<input type=\"button\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">";
+              + "<form action=\"\\acc\\buy\\"+getId()+"\" method=\"POST\">"
+              + "<input type=\"submit\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">"
+              + "</form>";
     }    
 }

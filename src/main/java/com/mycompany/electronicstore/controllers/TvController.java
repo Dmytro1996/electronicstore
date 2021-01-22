@@ -5,7 +5,10 @@
  */
 package com.mycompany.electronicstore.controllers;
 
+import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.service.TelevisionService;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,6 +32,8 @@ public class TvController {
     Logger logger=LoggerFactory.getLogger(TvController.class);
     @Autowired
     TelevisionService tvService;
+    @Autowired
+    private List<Commodity> basket;
     
     @GetMapping("/all")
     public String getAll(Model model){
@@ -54,4 +59,10 @@ public class TvController {
         return "tv";
     }
     
+    @PostMapping("/buy/{id}")
+    public String buy(@PathVariable("id") long id){
+        basket.add(tvService.getAll().stream().filter(c->c.getId()==id).findFirst().get());        
+        return "redirect:\\tv\\all";
+    }
+        
 }

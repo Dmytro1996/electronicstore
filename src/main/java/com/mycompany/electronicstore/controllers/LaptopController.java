@@ -5,12 +5,15 @@
  */
 package com.mycompany.electronicstore.controllers;
 
+import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.service.impl.LaptopServiceImpl;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +28,8 @@ public class LaptopController {
     
     @Autowired
     private LaptopServiceImpl laptopService;
+    @Autowired
+    private List<Commodity> basket;
     
     @GetMapping("/all")
     private String getAll(Model model){
@@ -51,5 +56,11 @@ public class LaptopController {
                 Double.valueOf(maxPrice), screenSize, brand, resolution,
                 request.getParameterValues("operMem"),intMem));
         return "laptops";
+    }
+    
+    @PostMapping("/buy/{id}")
+    public String buy(@PathVariable("id") long id){
+        basket.add(laptopService.getAll().stream().filter(c->c.getId()==id).findFirst().get());        
+        return "redirect:\\laptop\\all";
     }
 }

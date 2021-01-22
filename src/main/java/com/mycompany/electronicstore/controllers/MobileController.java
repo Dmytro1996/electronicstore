@@ -5,8 +5,10 @@
  */
 package com.mycompany.electronicstore.controllers;
 
+import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.service.MobileDeviceService;
 import java.util.Arrays;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +32,8 @@ public class MobileController {
     Logger logger=LoggerFactory.getLogger(MobileController.class);
     @Autowired
     private MobileDeviceService mobileService;
+    @Autowired
+    private List<Commodity> basket;
     
     /*@Autowired
     public MobileController(MobileDeviceService mobileService){
@@ -73,5 +78,11 @@ public class MobileController {
                 request.getParameterValues("operMem"),intMem, extMem, camera,
                 request.getParameterValues("simCount"),request.getParameterValues("gps")));
         return "mobile";
+    }
+    
+    @PostMapping("/buy/{id}")
+    public String buy(@PathVariable("id") long id){
+        basket.add(mobileService.getAll().stream().filter(c->c.getId()==id).findFirst().get());        
+        return "redirect:\\mobile\\all";
     }
 }

@@ -40,32 +40,12 @@
             <div id="brandSelector">
               <label>Brand:</label><br>            
               <select id="brand" name="brand" value="All brands">
-                  <option>All brands</option>
-                  <!--<option>KOSS</option>
-                  <option>Logitech</option>
-                  <option>Ergo</option>
-                  <option>Belkin</option>-->
+                  <option>All brands</option>                  
                   ${brands}
               </select><br>
             </div>
             <div id="typeInput">
-              <label id="typeLabel">Type:</label>
-              <!--<div id="computer_mouse">            
-                <label>Computer mouse</label>
-                <input type="checkbox" name="names" value="Computer mouse">
-              </div>
-              <div id="keyboard">
-                <label>Keyboard</label>
-                <input type="checkbox" name="names" value="Keyboard">
-              </div>
-              <div id="earphones">
-                <label>Earphones</label>
-                <input type="checkbox" name="names" value="Earphones">
-              </div>
-              <div id="bag">
-                <label>Bag for laptop</label><br>
-                <input type="checkbox" name="names" value="Bag for laptop">
-              </div>-->
+              <label id="typeLabel">Type:</label>              
               ${types}
             </div>
             <input type="submit" id="apply" value="Apply">
@@ -80,7 +60,7 @@
         <div id="popup_window">
             <input type="button"  id="close" value="&times;"><br>            
             <div id="addedItems">Basket is empty</div>            
-            <form method="POST">
+            <form action="/orders/create" method="POST">
                 <label>To make an order live us your contact information, please:</label><br>
                 <label>Your name:</label>
                 <input type="text" name="name" id="name"><br>
@@ -88,7 +68,7 @@
                 <input type="text" name="email" id="email"><br>
                 <label>Phone:</label>
                 <input type="text" name="name" id="name"><br>
-                <input type="sublmit" id=send value="send">
+                <input type="submit" id=send value="send">
             </form>
         </div>
         <div id ="overlay"></div>

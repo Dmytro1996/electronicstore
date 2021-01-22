@@ -42,69 +42,33 @@
             <div id="screenAndBrandInput">
               <label>Screensize:</label><br>
               <select id="screenSize" name="screenSize" value="All screensizes">
-                <option>All screensizes</option>
-                <!--<option>4</option>
-                <option>4.5</option>
-                <option>5</option>
-                <option>5.5</option>
-                <option>6</option>-->
+                <option>All screensizes</option>                
                 ${screenSizes}                
             </select><br>
               <label>Brand:</label><br>
               <select id="brand" name="brand" value="All brands">
-                  <option>All brands</option>
-                  <!--<option>Samsung</option>
-                  <option>Apple</option>
-                  <option>Xiaomi</option>
-                  <option>Huawei</option>
-                  <option>Meizu</option>
-                  <option>HTC</option>-->
+                  <option>All brands</option>                  
                   ${brands}
               </select><br>
             </div>
             <div id="operMemInput">
-              <label>Operating memory:</label><br>
-              <!--<input type="checkbox" name="operMem" value="4">
-              <label>4</label><br>
-              <input type="checkbox" name="operMem" value="6">
-              <label>6</label><br>
-              <input type="checkbox" name="operMem" value="8">
-              <label>8</label><br>
-              <input type="checkbox" name="operMem" value="12">
-              <label>12</label><br>
-              <input type="checkbox" name="operMem" value="16">
-              <label>16</label><br>-->
+              <label>Operating memory:</label><br>              
               ${operMems}
             </div>
             <div id="intExtMemCameraInput">
               <label>Internal memory:</label><br>
               <select id="intMem" name="intMem" value="All">
-                  <option>All</option>
-                  <!--<option>8</option>
-                  <option>16</option>
-                  <option>32</option>
-                  <option>64</option>
-                  <option>128</option>
-                  <option>256</option>-->
+                  <option>All</option>                  
                   ${internalMemories}
               </select><br>                      
               <label>External memory:</label><br>
               <select id="extMem" name="extMem" value="All">
-                  <option>All</option>
-                  <!--<option>8</option>
-                  <option>16</option>
-                  <option>32</option>
-                  <option>64</option>
-                  <option>128</option>
-                  <option>256</option>-->
+                  <option>All</option>                  
                   ${externalMemories}
               </select><br>
               <label>Camera:</label><br>
               <select id="camera" name="camera" value="All">
-                  <option>All</option>
-                  <!--<option>8</option>
-                  <option>16</option>
-                  <option>20</option>-->
+                  <option>All</option>                  
                   ${cameras}
               </select><br>
             </div>
@@ -135,7 +99,7 @@
         <div id="popup_window">
             <input type="button"  id="close" value="&times;"><br>            
             <div id="addedItems">Basket is empty</div>            
-            <form action="https://formspree.io/danilovdmitro76@gmail.com" method="POST">
+            <form action="/orders/create" method="POST">
                 <label>To make an order live us your contact information, please:</label><br>
                 <label>Your name:</label>
                 <input type="text" name="name" id="name"><br>

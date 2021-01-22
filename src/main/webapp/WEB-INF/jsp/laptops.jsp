@@ -41,60 +41,29 @@
                 <label>Screensize:</label><br>                
                 <select id="screenSize" name="screenSize" value="All screenSizes">
                     <option>All screensizes</option>
-                    ${screenSizes}
-                    <!--<option>10</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>17</option>-->               
+                    ${screenSizes}                                   
                 </select><br>
                 <label>Brand:</label><br>
                 <select id="brand" name="brand" value="All brands">
-                    <option>All brands</option>
-                    <!--<option>Samsung</option>
-                    <option>Apple</option>
-                    <option>Lenovo</option>
-                    <option>Asus</option>
-                    <option>Acer</option>
-                    <option>HP</option>-->
+                    <option>All brands</option>                    
                     ${brands}
                 </select><br>
               </div>
               <div id="resAndIntMemInput">
                 <label>Resolution:</label><br>
                 <select id="resolution" name="resolution" value="All resolutions">
-                    <option>All resolutions</option>
-                    <!--<option>HD</option>
-                    <option>FULL_HD</option>
-                    <option>WQHD</option>
-                    <option>UHD</option>
-                    <option>EIGHT_K</option>-->
+                    <option>All resolutions</option>                    
                     ${resolutions}
                 </select><br>
                 <label>Internal memory:</label><br> 
                 <select id="intMem" name="intMem" value="All">
-                    <option>All</option>
-                    <!--<option>128</option>
-                    <option>256</option>
-                    <option>500</option>
-                    <option>1000</option>
-                    <option>2000</option>-->
+                    <option>All</option>                    
                     ${internalMemories}
                 </select><br>
               </div>
               <div id="operatingMemoryInput">
                 <label>Operating memory:</label><br>
-                ${operMems}
-                <!--<input type="checkbox" name="operMem" value="4">
-                <label>4</label><br>
-                <input type="checkbox" name="operMem" value="8">
-                <label>8</label><br>
-                <input type="checkbox" name="operMem" value="12">
-                <label>12</label><br>
-                <input type="checkbox" name="operMem" value="16">
-                <label>16</label><br>
-                <input type="checkbox" name="operMem" value="32">
-                <label>32</label><br>-->
+                ${operMems}                
               </div>
               <input type="submit" value="Apply" id="apply">
           </form>
@@ -108,7 +77,7 @@
         <div id="popup_window">
             <input type="button"  id="close" value="&times;"><br>            
             <div id="addedItems">Basket is empty</div>            
-            <form action="https://formspree.io/danilovdmitro76@gmail.com" method="POST">
+            <form action="/orders/create" method="POST">
                 <label>To make an order live us your contact information, please:</label><br>
                 <label>Your name:</label>
                 <input type="text" name="name" id="name"><br>

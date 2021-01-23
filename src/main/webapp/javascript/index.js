@@ -174,7 +174,8 @@ function closeLoginMenu(){
 let loginBtn=document.querySelector('#loginButton');
 if(loginBtn!==null){loginBtn.addEventListener('click',showLoginForm);}
 var loginToOrder=document.querySelector('#loginToOrder');
-loginToOrder.onclick=function(){
+loginToOrder.onclick=function(){  
+    const basket = document.getElementById('popup_window');
     closeBasket(basket);
     showLoginForm();    
 };
@@ -190,10 +191,12 @@ function closeLoginForm(){
 }
 
 window.onclick=function(event){    
-    if(event.target!==loginMenuOpenerBtn || event.target!==loginToOrder){
-        if(document.querySelector('#loginMenu').style.display==='block'){
-             closeLoginMenu();
-         }
+    if(event.target!==loginMenuOpenerBtn){
+        //if(event.target!==loginToOrder){
+            if(document.querySelector('#loginMenu').style.display==='block'){
+                closeLoginMenu();
+            }
+        //}
     }    
 };
 

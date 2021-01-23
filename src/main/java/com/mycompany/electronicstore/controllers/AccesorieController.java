@@ -7,7 +7,6 @@ package com.mycompany.electronicstore.controllers;
 
 import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.service.AccesorieService;
-import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -50,6 +49,9 @@ public class AccesorieController {
             HttpServletRequest request){        
         model.addAttribute("acc", accService.getByCriterias(Double.valueOf(minPrice),
                 Double.valueOf(maxPrice),brand, request.getParameterValues("type")));
+        model.addAttribute("brands",accService.getBrands());
+        model.addAttribute("types",accService.getTypes());
+        model.addAttribute("acc", accService.getAllAsHTML());
         return "accesories";
     }
     

@@ -83,7 +83,9 @@ function getCommodity(id){
 let openBasketBtn=document.getElementById('basket');
 let closeBasketBtn=document.getElementById('close');
 let overlay=document.getElementById('overlay');
-document.getElementById('send').addEventListener('click',clearBasket);
+if(document.getElementById('send')!==null){
+    document.getElementById('send').addEventListener('click',clearBasket);
+}
 openBasketBtn.addEventListener('click',()=>{
     let basket=document.getElementById('popup_window');
     openBasket(basket);
@@ -94,7 +96,8 @@ closeBasketBtn.addEventListener('click',()=>{
 });
 overlay.addEventListener('click', () => {
   const basket = document.getElementById('popup_window');  
-  closeBasket(basket);  
+  closeBasket(basket);
+  closeLoginForm();
 });
 function openBasket(basket){
     if(basket!==null){        
@@ -112,11 +115,13 @@ function closeBasket(basket){
 function fillAddedItems(){
    
   if(arrToHTML(sessionStorage).length>0){
-    document.getElementById('addedItems').innerHTML='Currently in basket:'+buyBtnClickCount;
+    document.getElementById('addedItems').innerHTML='Currently in basket:'+sessionStorage.length;
     document.getElementById('addedItems').innerHTML+=arrToHTML(sessionStorage);
     document.getElementById('addedItems').innerHTML+=calculateTotalSum();
+    document.getElementById('addedItems').classList.remove('emptyBasket');
   } else{
-    document.getElementById('addedItems').innerHTML='Basket is empty';  
+    document.getElementById('addedItems').innerHTML='Basket is empty';
+    document.getElementById('addedItems').classList.add('emptyBasket');
   }
   createRemoveBtns();
 }
@@ -152,5 +157,44 @@ function findMaxKey(){
     return max;
 }
 
+var loginMenuOpenerBtn=document.querySelector('#loginMenuOpener');
+if(loginMenuOpenerBtn!==null){loginMenuOpenerBtn.addEventListener('click',openLoginMenu);}
+function openLoginMenu(){
+    //window.addEventListener('click',closeDropDownMenu);
+    document.querySelector('#loginMenu').style.display='block';
+    loginMenuOpenerBtn.removeEventListener('click',openLoginMenu);
+    loginMenuOpenerBtn.addEventListener('click',closeLoginMenu);    
+}
+function closeLoginMenu(){
+    document.querySelector('#loginMenu').style.display='none';
+    loginMenuOpenerBtn.removeEventListener('click',closeLoginMenu);
+    //window.removeEventListener('click',closeDropDownMenu);
+    loginMenuOpenerBtn.addEventListener('click',openLoginMenu);
+}
+let loginBtn=document.querySelector('#loginButton');
+if(loginBtn!==null){loginBtn.addEventListener('click',showLoginForm);}
+var loginToOrder=document.querySelector('#loginToOrder');
+loginToOrder.onclick=function(){
+    closeBasket(basket);
+    showLoginForm();    
+};
+function showLoginForm(){
+    overlay.classList.add('active');
+    document.querySelector("#loginFormContainer").style.display='block';    
+}
+let closeLoginFormBtn=document.querySelector('#closeLoginForm');
+closeLoginFormBtn.addEventListener('click',closeLoginForm);
+function closeLoginForm(){
+    overlay.classList.remove('active');
+    document.querySelector("#loginFormContainer").style.display='none';
+}
+
+window.onclick=function(event){    
+    if(event.target!==loginMenuOpenerBtn || event.target!==loginToOrder){
+        if(document.querySelector('#loginMenu').style.display==='block'){
+             closeLoginMenu();
+         }
+    }    
+};
 
 

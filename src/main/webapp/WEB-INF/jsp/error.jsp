@@ -21,6 +21,7 @@
                 <input type="button" id="basket" value="Basket">
             </div>
         </div>
-        <h1 style="margin: 0 auto; width: max-content">Page does not exist</h1>        
+        <h1 style="margin: 0 auto; width: max-content">${message}</h1>
+        <h2 style="margin: 0 auto; width: max-content">${code}</h2>        
     </body>
 </html>

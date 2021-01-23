@@ -3,7 +3,7 @@
     Created on : 24 лист. 2020, 21:48:59
     Author     : dmytr
 --%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,7 @@
     </head>
     <body>
         <div id="headerContainer">
+            <jsp:include page="login-form.jsp"/>
             <div id="titleAndButtonContainer">
                 <h1 id="title"><img src="images/favicon.png" alt="Electronic Webstore">Electronic Webstore</h1><br>
                 <input type="button" id="basket" value="Basket">
@@ -25,7 +26,9 @@
           <a href="/laptop/all"><img src="images/laptop-laptops.jpeg" alt="Laptops"><div>Laptops</div></a>
           <a href="acc/all"><img src="images/acc-accesories.jpg" alt="Accesories"><div>Accesories</div></a>          
         </div>
-        <a href="/orders/all">See orders</a>
+        <sec:authorize access="hasAuthority('ADMIN')">
+            <a href="/orders/all">See orders</a>
+        </sec:authorize>
         <footer>            
           <h1>Contacts:</h1>
           <div id="socialNetworks">
@@ -36,20 +39,7 @@
           <h2>Phone:+380977777777</h2>
           <h2>E-mail:electronocwebstore@gmail.com</h2>
         </footer>
-        <div id="popup_window">
-            <input type="button" id="close" value="&times;"><br>           
-            <div id="addedItems"></div>            
-            <form action="/orders/create" method="POST">
-                <label>To make an order live us your contact information, please:</label><br>
-                <label>Your name:</label>
-                <input type="text" name="name" id="name"><br>
-                <label>E-mail:</label>
-                <input type="text" name="email" id="email"><br>
-                <label>Phone:</label>
-                <input type="text" name="phone" id="name"><br>
-                <input type="submit" id=send value="send">
-            </form>
-        </div>
+        <jsp:include page="shopping-cart.jsp"/>        
         <div id ="overlay"></div>
         <script src="javascript/index.js"></script>
     </body>

@@ -19,6 +19,7 @@
     </head>
     <body>
        <div id="headerContainer">
+          <jsp:include page="login-form.jsp"/>
           <div id="titleAndButtonContainer">
             <h1 id="title">Mobile phones</h1>
             <input type="button" id="basket" value="Basket">
@@ -96,20 +97,7 @@
             ${mobiles}           
             <a href="../../../java/com/mycompany/electronicstore/service/MobileDeviceService.java"></a>
         </div>
-        <div id="popup_window">
-            <input type="button"  id="close" value="&times;"><br>            
-            <div id="addedItems">Basket is empty</div>            
-            <form action="/orders/create" method="POST">
-                <label>To make an order live us your contact information, please:</label><br>
-                <label>Your name:</label>
-                <input type="text" name="name" id="name"><br>
-                <label>E-mail:</label>
-                <input type="text" name="email" id="email"><br>
-                <label>Phone:</label>
-                <input type="text" name="phone" id="name"><br>
-                <input type="submit" id=send value="send">
-            </form>
-        </div>
+        <jsp:include page="shopping-cart.jsp"/> 
         <div id ="overlay"></div>
         <footer>            
           <h1>Contacts:</h1>

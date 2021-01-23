@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <div id="popup_window">
     <input type="button" id="close" value="&times;"><br>           
-    <div id="addedItems" calss="emptyBasket"></div>
+    <div id="addedItems" class="emptyBasket"></div>
     <sec:authorize access="!isAuthenticated()">
         <p>To make an order <span id="loginToOrder">login</span> or <a href="/users/create">register</a></p>
     </sec:authorize>

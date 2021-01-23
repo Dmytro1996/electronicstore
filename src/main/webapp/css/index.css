@@ -107,7 +107,7 @@ footer h2{
   text-align:center;
   font-size:15px;
 }
-#popup_window{
+#popup_window,#loginFormContainer{
   position: fixed;
   top: 50%;
   left: 50%;
@@ -116,9 +116,11 @@ footer h2{
   border: 1px solid black;
   border-radius: 10px;
   z-index: 10;
-  background-color: white;
-  width: 500px;
+  background-color: white;  
   max-width: 80%;
+}
+#popup_window{
+    width: 500px;
 }
 #popup_window.active{
     display:block;
@@ -151,7 +153,7 @@ footer h2{
     float:right;
     margin-bottom:10px;
 }
-#close {
+#close,#closeLoginForm {
   cursor: pointer;
   border: none;
   outline: none;
@@ -173,7 +175,7 @@ footer h2{
     float:left;
     margin-bottom:10px;
 }
-#apply,#basket,#filterBtn,#send,.buy,.remove{
+#apply,#basket,#filterBtn,#send,#loginMenuOpener,#logoutButton,.buy,.remove{
    color:white;
    font-family: 'Arial Black';
    background-color: rgb(55,110,130);
@@ -182,13 +184,68 @@ footer h2{
    box-shadow:10px 5px #999;
    cursor: pointer;   
 }
-#apply:hover,#basket:hover,#send:hover,#filterBtn:hover,.buy:hover,.remove:hover{
+#apply:hover,#basket:hover,#send:hover,#logoutButton:hover,#loginMenuOpener:hover,
+         #filterBtn:hover,.buy:hover,.remove:hover{
     background-color: rgb(50,100,110);
 }
-#apply:active,#basket:active,#filterBtn:active,#send:hover,.buy:active,.remove:active{
+#apply:active,#basket:active,#logoutButton:active,#loginMenuOpener:active,
+         #filterBtn:active,#send:hover,buy:active,.remove:active{
   background-color: rgb(50,100,110);
   box-shadow: 5px 0px #660;
   transform: translateY(4px);
+}
+
+#loginMenu{
+    display:none;
+    position:absolute;
+    background-color: white;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-family: initial;
+    margin-top: 25px;
+}
+
+#loginButton{
+    background-color: white;
+    width:100%;
+    border:none;
+    text-align: left;
+}
+
+#loginMenu a{
+    text-decoration: none;     
+    color:black;    
+    display:block;    
+}
+
+#loginFormContainer{
+    color:black;
+    font-family: initial;
+}
+
+#loginFormContainer table{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+
+.loginDropdown,#logoutButtonContainer{
+    display:flex;
+    justify-content: flex-end;
+}
+
+#loginToOrder{
+    color:blue;
+    text-decoration: underline;
+}
+
+.emptyBasket{
+    height:200px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:gray;
+    font-size: 20px;    
 }
 @media(max-width:980px){
   #links{    

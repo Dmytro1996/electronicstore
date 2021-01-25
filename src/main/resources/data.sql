@@ -62,3 +62,17 @@ INSERT INTO Accesories(id,model,price,type,short_description,brand_id) VALUES(1,
 INSERT INTO Accesories(id,model,price,type,short_description,brand_id) VALUES(2,"M180",600,"Computer mouse","Good computer mouse",10);
 INSERT INTO Accesories(id,model,price,type,short_description,brand_id) VALUES(3,"KL50",900,"Keyboard","Good keyboard",10);
 INSERT INTO Accesories(id,model,price,type,short_description,brand_id) VALUES(4,"B10",900,"Bag for laptop","Good bag",11);
+
+INSERT INTO Users(id,first_name,last_name,email,password,role) VALUES(1,"John","Smith","johnsmith@mail.com","Aa12345","ADMIN");
+INSERT INTO Users(id,first_name,last_name,email,password,role) VALUES(2,"Sam","Samuelson","sam@mail.com","Bb23456","USER");
+INSERT INTO Users(id,first_name,last_name,email,password,role) VALUES(3,"Ron","White","ronwhite@mail.com","Cc34567","USER");
+
+INSERT INTO Orders(id,user_id,executed) VALUES(1,1,false);
+
+INSERT INTO tv_ordered(order_id,tv_id) VALUES(1,5);
+
+INSERT INTO laptops_ordered(order_id,laptop_id) VALUES(1,3);
+
+INSERT INTO mobiles_ordered(order_id,mobile_id) VALUES(1,4);
+
+INSERT INTO acc_ordered(order_id,acc_id) VALUES(1,2);

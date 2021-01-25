@@ -3,6 +3,8 @@
     Created on : 22 січ. 2021, 21:30:41
     Author     : dmytr
 --%>
+<%@page import="com.mycompany.electronicstore.model.Role"%>
+<%@page import="com.mycompany.electronicstore.model.User"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,24 +22,37 @@
                 </h1><br>
                 <input type="button" id="basket" value="Basket">
             </div>
-        </div>
+        </div>        
         <form:form action="/users/create" method="POST" modelAttribute="user">
             <table>
                 <tr>
                     <td>Firstname:</td>
-                    <td><form:input path="firstName"/></td>
+                    <td>
+                        <form:input path="firstName"/>
+                        <form:errors path="firstName" cssStyle="color:red;"/>
+                    </td>
                 </tr>
                 <tr>
                     <td>Lastname:</td>
-                    <td><form:input path="lastName"/></td>
+                    <td>
+                        <form:input path="lastName"/>
+                        <form:errors path="lastName" cssStyle="color:red;"/>
+                    </td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><form:input path="email"/></td>
+                    <td>
+                        <form:input path="email"/>
+                        <form:errors path="email" cssStyle="color:red;"/>
+                    </td>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><form:input type="password" path="password"/></td>
+                    <td>
+                        <form:input type="password" path="password"/>
+                        <form:errors path="password" cssStyle="color:red;"/> 
+                        <form:input type="text" path="role" value="USER" hidden="true"/>
+                    </td>
                 </tr>
             </table>
             <input type="submit" value="register"/>

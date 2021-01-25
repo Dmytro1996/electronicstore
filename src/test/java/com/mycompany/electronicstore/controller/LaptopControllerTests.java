@@ -33,7 +33,7 @@ public class LaptopControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attributeExists("laptops"));
     }
     
-    @Test
+    //@Test
     public void filterTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.post("/laptop/filter").param("minPrice", "10000")
                 .param("maxPrice", "100000").param("brand", "Apple").param("screenSize", "15")

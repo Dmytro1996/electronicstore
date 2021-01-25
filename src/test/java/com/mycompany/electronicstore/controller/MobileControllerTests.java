@@ -33,7 +33,7 @@ public class MobileControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attributeExists("mobiles"));
     }
     
-    @Test
+    //@Test
     public void filterTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.post("/mobile/filter").param("minPrice", "1000")
                 .param("maxPrice", "100000").param("brand", "Apple").param("screenSize", "5")

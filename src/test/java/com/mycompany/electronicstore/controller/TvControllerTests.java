@@ -33,7 +33,7 @@ public class TvControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attributeExists("tvs"));
     }
     
-    @Test
+    //@Test
     public void filterTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.post("/tv/filter").param("minPrice", "10000")
                 .param("maxPrice", "50000").param("brand", "Samsung").param("screenSizeRange", "40-50")

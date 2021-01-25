@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
  */
 public interface CommodityService {
     
+    <T extends Commodity> T readById(long id);
+    
     String getAllAsHTML();
     
     <T extends Commodity> List<T> getAll();
@@ -36,8 +38,9 @@ public interface CommodityService {
         String result="";    
         for(int i=0;i<comms.size();i++){
             if((i==0) || (i%3==0)){result+="<div id=\"commodityRow\">";}
-                result+="<div class=\"comm"+comms.get(i).getId()+"\" id=\"commodity\">"+comms.get(i).addImage()+
-                comms.get(i).toHTML()+"</div>";
+                result+="<div class=\""+comms.get(i).getClass().getSimpleName()
+                        +comms.get(i).getId()+"\" id=\"commodity\">"+comms.get(i).addImage()+
+                        comms.get(i).toHTML()+"</div>";
             if(((i+1)%3==0 && i>0) || (i==(comms.size()-1))){result+="</div>";}
        }
         return result;

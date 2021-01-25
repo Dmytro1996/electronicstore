@@ -5,6 +5,7 @@
  */
 package com.mycompany.electronicstore.service.impl;
 
+import com.mycompany.electronicstore.exception.NullEntityReferenceException;
 import com.mycompany.electronicstore.model.Order;
 import com.mycompany.electronicstore.repository.OrderRepository;
 import com.mycompany.electronicstore.service.OrderService;
@@ -36,7 +37,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public Order create(Order order){
-        return orderRepo.save(order);
+        if(order!=null){
+            return orderRepo.save(order);
+        }
+        throw new NullEntityReferenceException("Order cannot be null");
     }
 
     public Order delete(long id){

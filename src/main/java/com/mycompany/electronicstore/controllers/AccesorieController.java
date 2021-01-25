@@ -8,6 +8,7 @@ package com.mycompany.electronicstore.controllers;
 import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.service.AccesorieService;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,7 @@ public class AccesorieController {
        model.addAttribute("brands",accService.getBrands());
        model.addAttribute("types",accService.getTypes());
        model.addAttribute("acc", accService.getAllAsHTML());
+       model.addAttribute("basket",basket.stream().collect(Collectors.toList()));
        return "accesories";
     }
     
@@ -52,12 +54,13 @@ public class AccesorieController {
         model.addAttribute("brands",accService.getBrands());
         model.addAttribute("types",accService.getTypes());
         model.addAttribute("acc", accService.getAllAsHTML());
+        model.addAttribute("basket",basket.stream().collect(Collectors.toList()));
         return "accesories";
     }
     
     @PostMapping("/buy/{id}")
     public String buy(@PathVariable("id") long id){
-        basket.add(accService.getAll().stream().filter(c->c.getId()==id).findFirst().get());        
+        basket.add(accService.readById(id));        
         return "redirect:\\acc\\all";
     }
 }

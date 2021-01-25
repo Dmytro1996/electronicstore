@@ -247,6 +247,10 @@ footer h2{
     color:gray;
     font-size: 20px;    
 }
+
+/*#popup_window form{
+    display:none;
+}*/
 @media(max-width:980px){
   #links{    
     display:flex;

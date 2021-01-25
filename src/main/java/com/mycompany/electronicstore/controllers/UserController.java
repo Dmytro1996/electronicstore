@@ -10,10 +10,13 @@ import com.mycompany.electronicstore.model.User;
 import com.mycompany.electronicstore.service.UserService;
 import com.mycompany.electronicstore.service.impl.UserServiceImpl;
 import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
     
     private UserServiceImpl userService;
+    Logger logger=LoggerFactory.getLogger(UserController.class);
     
     @Autowired
     public UserController(UserServiceImpl userService){
@@ -36,17 +40,22 @@ public class UserController {
     
     @GetMapping("/create")
     public String create(Model model){
-        model.addAttribute("user",new User());
+        logger.info("Inside create(Get)");
+        User user=new User();
+        user.setRole(Role.USER);
+        model.addAttribute("user",user);        
         return "registration";
     }
     
     @PostMapping("/create")
-    public String create(@Valid @ModelAttribute("user")User user,Model model, BindingResult result){
+    public String create(Model model,@Validated @ModelAttribute("user")User user, BindingResult result){        
         if(result.hasErrors()){
+            logger.info("has errors"+
+            result.getAllErrors().toString());
             model.addAttribute("user", user);
             return "registration";
-        }
-        user.setRole(Role.USER);
+        } 
+        logger.info("Does not have errors");
         userService.create(user);
         return "redirect:/index";
     }

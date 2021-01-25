@@ -40,7 +40,7 @@ public class Laptop extends ITCommodity {
               "<p id=\"internalMemory\">Internal memory:"+getIntMem()+"</p>"
               +"<p id=\"price\">Price:"+getPrice()+"</p>" 
               + "<form action=\"\\laptop\\buy\\"+getId()+"\" method=\"POST\">"
-              + "<input type=\"submit\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">"
-              + "</form>";
+              + "<input type=\"submit\" id=\""+getClass().getSimpleName()+getId()
+              +"\" class=\"buy\" value=\"Buy\">"+ "</form>";
     }    
 }

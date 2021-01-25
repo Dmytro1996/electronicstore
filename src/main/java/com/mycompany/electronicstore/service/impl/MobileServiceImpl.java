@@ -12,6 +12,7 @@ import com.mycompany.electronicstore.service.MobileDeviceService;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,14 @@ public class MobileServiceImpl implements MobileDeviceService {
     @Override
     public String getAllAsHTML(){
         return toHTML(mobileRepo.findAll());
-    }  
+    } 
+    
+    public MobileDevice readById(long id){
+        if(mobileRepo.findById(id).isPresent()){
+            return mobileRepo.findById(id).get();
+        }
+        throw new EntityNotFoundException("Mobile device wit id="+id+" not found");
+    }
         
     public List<MobileDevice> getAll(){
         return mobileRepo.findAll();

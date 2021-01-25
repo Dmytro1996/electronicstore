@@ -99,7 +99,7 @@ public class MobileDevice extends ITCommodity {
               "<p id=\"gpsOutput\">Gps:"+isGps()+"</p>"
               +"<p id=\"price\">Price:"+getPrice()+"</p>" 
               +"<form action=\"\\mobile\\buy\\"+getId()+"\" method=\"POST\">"
-              + "<input type=\"submit\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">"
-              + "</form>";
+              + "<input type=\"submit\" id=\""+getClass().getSimpleName()+getId()
+              +"\" class=\"buy\" value=\"Buy\">"+ "</form>";
     }    
 }

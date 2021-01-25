@@ -3,14 +3,18 @@
     Created on : 24 лист. 2020, 21:48:59
     Author     : dmytr
 --%>
+<%@page import="com.mycompany.electronicstore.model.Commodity"%>
+<%@page import="java.util.List"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Electronic Store</title>
-        <link rel="stylesheet" href="/css/index.css" type="text/css">        
+        <link rel="stylesheet" href="/css/index.css" type="text/css">
+        <link rel="stylesheet" href="/css/commodity.css" type="text/css">        
     </head>
     <body>
         <div id="headerContainer">
@@ -29,6 +33,24 @@
         <sec:authorize access="hasAuthority('ADMIN')">
             <a href="/orders/all">See orders</a>
         </sec:authorize>
+        <h2 id="popularCommoditiesHeader">Popular commodities</h2>
+        
+        <% 
+               List<Commodity> comms=(List<Commodity>)request.getAttribute("popularCommodities");
+               out.println("<div id=\"commodityList\">");
+               out.println("<div id=\"commodityRow\">");
+               for(int i=0;i<comms.size();i++){
+                   if(i>1 && i%2==0){
+                       out.println("</div>");
+                       out.println("<div id=\"commodityRow\">");
+                   }
+                   out.println("<div class=\""+comms.get(i).getClass().getSimpleName()
+                           +comms.get(i).getId()+"\" id=\"commodity\">"
+                           +comms.get(i).addImage()+comms.get(i).toHTML()+"</div>");                   
+               }
+               out.println("</div>");
+               out.println("</div>");
+            %>
         <footer>            
           <h1>Contacts:</h1>
           <div id="socialNetworks">

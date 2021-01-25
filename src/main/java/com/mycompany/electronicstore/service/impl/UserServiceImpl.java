@@ -6,6 +6,7 @@
 package com.mycompany.electronicstore.service.impl;
 
 import com.mycompany.electronicstore.details.UserDetailsImpl;
+import com.mycompany.electronicstore.exception.NullEntityReferenceException;
 import com.mycompany.electronicstore.model.User;
 import com.mycompany.electronicstore.repository.UserRepository;
 import java.util.ArrayList;
@@ -33,7 +34,10 @@ public class UserServiceImpl implements UserDetailsService {
     }
     
     public User create(User user){
-        return userRepo.save(user);
+        if(user!=null){
+            return userRepo.save(user);
+        }
+        throw new NullEntityReferenceException("User cannot be null");
     }
     
     public User readById(long id){

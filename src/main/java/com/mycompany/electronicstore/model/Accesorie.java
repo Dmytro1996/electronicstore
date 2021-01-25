@@ -79,7 +79,7 @@ public class Accesorie extends Commodity{
               +"<p id=\"shortDesc\">Short description::"+shortDescription+"</p>"              
               +"<p id=\"price\">Price:"+getPrice()+"</p>" 
               + "<form action=\"\\acc\\buy\\"+getId()+"\" method=\"POST\">"
-              + "<input type=\"submit\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">"
-              + "</form>";
+              + "<input type=\"submit\" id=\""+getClass().getSimpleName()+getId()
+              +"\" class=\"buy\" value=\"Buy\">"+ "</form>";
     }    
 }

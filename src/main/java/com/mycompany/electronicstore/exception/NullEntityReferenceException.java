@@ -9,7 +9,7 @@ package com.mycompany.electronicstore.exception;
  *
  * @author dmytr
  */
-public class NullEntityReferenceException extends Exception {
+public class NullEntityReferenceException extends RuntimeException {
     
     public NullEntityReferenceException(String message){
         super(message);

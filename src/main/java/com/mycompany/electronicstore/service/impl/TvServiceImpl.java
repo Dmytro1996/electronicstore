@@ -10,6 +10,7 @@ import com.mycompany.electronicstore.repository.TelevisionRepository;
 import com.mycompany.electronicstore.service.TelevisionService;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,13 @@ public class TvServiceImpl implements TelevisionService {
     
     public String getAllAsHTML(){
         return toHTML(tvRepo.findAll());
+    }
+    
+    public Television readById(long id){
+        if(tvRepo.findById(id).isPresent()){
+            return tvRepo.findById(id).get();
+        }
+        throw new EntityNotFoundException("TV wit id="+id+" not found");
     }
     
     public List<Television> getAll(){

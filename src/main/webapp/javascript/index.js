@@ -78,12 +78,16 @@ function closeBasket(basket){
 }
 
 if(document.querySelector('#basketItem')!==null){
-    document.querySelector('#popup_window .orderingForm').style.display='block';
-    document.querySelector('#popup_window .buyingProposal').style.display='none';
+    if(document.querySelector('#popup_window .orderingForm')!==null){
+        document.querySelector('#popup_window .orderingForm').style.display='block';
+        document.querySelector('#popup_window .buyingProposal').style.display='none';
+    }
     document.querySelector("#totalSum").style.display='block';
 } else{
-    document.querySelector('#popup_window .orderingForm').style.display='none';
-    document.querySelector('#popup_window .buyingProposal').style.display='block';
+    if(document.querySelector('#popup_window .orderingForm')!==null){
+        document.querySelector('#popup_window .orderingForm').style.display='none';
+        document.querySelector('#popup_window .buyingProposal').style.display='block';
+    }
     document.querySelector("#totalSum").style.display='none';
 }
 

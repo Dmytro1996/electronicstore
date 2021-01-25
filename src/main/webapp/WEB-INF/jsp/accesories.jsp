@@ -22,6 +22,7 @@
             <input type="button" id="basket" value="Basket">
           </div>          
           <div id="otherPagesLinks">
+              <a href="/index">Home</a>
               <a href="/tv/all">TVs</a>
               <a href="/mobile/all">Mobile phones</a>
               <a href="/laptop/all">Laptops</a>

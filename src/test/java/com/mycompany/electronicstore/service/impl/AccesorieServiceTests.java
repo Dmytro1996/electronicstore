@@ -64,7 +64,7 @@ public class AccesorieServiceTests {
     
     @Test
     public void getByCriterisaTest(){
-        String expected="<div id=\"commodityRow\"><div class=\"comm"+acc.getId()
+        String expected="<div id=\"commodityRow\"><div class=\""+acc.getClass().getSimpleName()+acc.getId()
                 +"\" id=\"commodity\">"+acc.addImage()+acc.toHTML()+"</div></div>";
         assertEquals(expected,accService.getByCriterias(acc.getPrice()-1, acc.getPrice()+1,
                 acc.getBrand().getName(),new String[]{String.valueOf(acc.getType())}));
@@ -77,7 +77,7 @@ public class AccesorieServiceTests {
     
     @Test
     public void getAllAsHTMLTest(){
-        String expected="<div id=\"commodityRow\"><div class=\"comm"+acc.getId()
+        String expected="<div id=\"commodityRow\"><div class=\""+acc.getClass().getSimpleName()+acc.getId()
                 +"\" id=\"commodity\">"+acc.addImage()+acc.toHTML()+"</div></div>";
         assertEquals(expected,accService.getAllAsHTML());
     } 

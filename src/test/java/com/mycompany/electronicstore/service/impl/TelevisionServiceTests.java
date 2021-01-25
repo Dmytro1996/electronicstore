@@ -67,7 +67,7 @@ public class TelevisionServiceTests {
     
     @Test
     public void getByCriterisaTest(){
-        String expected="<div id=\"commodityRow\"><div class=\"comm"+tv.getId()
+        String expected="<div id=\"commodityRow\"><div class=\""+tv.getClass().getSimpleName()+tv.getId()
                 +"\" id=\"commodity\">"+tv.addImage()+tv.toHTML()+"</div></div>";
         assertEquals(expected,tvService.getByCriterias(tv.getPrice()-1, tv.getPrice()+1,
                 "40-50", tv.getBrand().getName(),tv.getRes().toString(),
@@ -82,7 +82,7 @@ public class TelevisionServiceTests {
     
     @Test
     public void getAllAsHTMLTest(){
-        String expected="<div id=\"commodityRow\"><div class=\"comm"+tv.getId()
+        String expected="<div id=\"commodityRow\"><div class=\""+tv.getClass().getSimpleName()+tv.getId()
                 +"\" id=\"commodity\">"+tv.addImage()+tv.toHTML()+"</div></div>";
         assertEquals(expected,tvService.getAllAsHTML());
     }   

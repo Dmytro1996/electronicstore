@@ -66,7 +66,7 @@ public class LaptopServiceTests {
     
     @Test
     public void getByCriterisaTest(){
-        String expected="<div id=\"commodityRow\"><div class=\"comm"+laptop.getId()
+        String expected="<div id=\"commodityRow\"><div class=\""+laptop.getClass().getSimpleName()+laptop.getId()
                 +"\" id=\"commodity\">"+laptop.addImage()+laptop.toHTML()+"</div></div>";
         assertEquals(expected,laptopService.getByCriterias(laptop.getPrice()-1, laptop.getPrice()+1,
                 String.valueOf(laptop.getScreenSize()), laptop.getBrand().getName(),
@@ -81,7 +81,7 @@ public class LaptopServiceTests {
     
     @Test
     public void getAllAsHTMLTest(){
-        String expected="<div id=\"commodityRow\"><div class=\"comm"+laptop.getId()
+        String expected="<div id=\"commodityRow\"><div class=\""+laptop.getClass().getSimpleName()+laptop.getId()
                 +"\" id=\"commodity\">"+laptop.addImage()+laptop.toHTML()+"</div></div>";
         assertEquals(expected,laptopService.getAllAsHTML());
     }

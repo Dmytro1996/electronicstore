@@ -66,7 +66,7 @@ public class MobileDeviceServiceTests {
     
     @Test
     public void getByCriterisaTest(){
-        String expected="<div id=\"commodityRow\"><div class=\"comm"+mobile.getId()
+        String expected="<div id=\"commodityRow\"><div class=\""+mobile.getClass().getSimpleName()+mobile.getId()
                 +"\" id=\"commodity\">"+mobile.addImage()+mobile.toHTML()+"</div></div>";
         assertEquals(expected,mobileService.getByCriterias(mobile.getPrice()-1, mobile.getPrice()+1,
                 String.valueOf(mobile.getScreenSize()), mobile.getBrand().getName(),
@@ -83,7 +83,7 @@ public class MobileDeviceServiceTests {
     
     @Test
     public void getAllAsHTMLTest(){
-        String expected="<div id=\"commodityRow\"><div class=\"comm"+mobile.getId()
+        String expected="<div id=\"commodityRow\"><div class=\""+mobile.getClass().getSimpleName()+mobile.getId()
                 +"\" id=\"commodity\">"+mobile.addImage()+mobile.toHTML()+"</div></div>";
         assertEquals(expected,mobileService.getAllAsHTML());
     }

@@ -9,6 +9,7 @@ import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.service.TelevisionService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +43,7 @@ public class TvController {
         model.addAttribute("screenSizes",tvService.getScreenSizes());
         model.addAttribute("resolutions",tvService.getResolutions());
         model.addAttribute("tvs", tvService.getAllAsHTML());
+        model.addAttribute("basket",basket.stream().collect(Collectors.toList()));
         return "tv";
     }
     
@@ -56,12 +58,13 @@ public class TvController {
         model.addAttribute("tvs", tvService.getByCriterias(Double.valueOf(minPrice),
                 Double.valueOf(maxPrice), screenSizeRange, brand, resolution, 
                 request.getParameterValues("smartTv"), request.getParameterValues("threeD")));
+        model.addAttribute("basket",basket.stream().collect(Collectors.toList()));
         return "tv";
     }
     
     @PostMapping("/buy/{id}")
     public String buy(@PathVariable("id") long id){
-        basket.add(tvService.getAll().stream().filter(c->c.getId()==id).findFirst().get());        
+        basket.add(tvService.readById(id));        
         return "redirect:\\tv\\all";
     }
         

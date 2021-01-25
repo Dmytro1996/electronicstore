@@ -13,6 +13,7 @@ import com.mycompany.electronicstore.service.AccesorieService;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.persistence.EntityNotFoundException;
 /**
  *
  * @author dmytr
@@ -32,6 +33,13 @@ public class AccesorieServiceImpl implements AccesorieService{
 
     public String getAllAsHTML(){
         return toHTML(accRepo.findAll());
+    }
+    
+    public Accesorie readById(long id){
+        if(accRepo.findById(id).isPresent()){
+            return accRepo.findById(id).get();
+        }
+        throw new EntityNotFoundException("Accesorie wit id="+id+" not found");
     }
 
     private List<Accesorie> sortByType(List<Accesorie> acc,String[] names){

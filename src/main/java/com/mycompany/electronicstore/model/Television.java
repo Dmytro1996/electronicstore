@@ -62,7 +62,7 @@ public class Television extends ScreenCommodity {
               "<p id=\"3d\">3D:"+isThreeD()+"</p>"
               +"<p id=\"price\">Price:"+getPrice()+"</p>" 
               + "<form action=\"\\tv\\buy\\"+getId()+"\" method=\"POST\">"
-              + "<input type=\"submit\" id=\"comm"+getId()+"\" class=\"buy\" value=\"Buy\">"
-              + "</form>";
+              + "<input type=\"submit\" id=\""+getClass().getSimpleName()+getId()
+              +"\" class=\"buy\" value=\"Buy\">"+ "</form>";
     }    
 }

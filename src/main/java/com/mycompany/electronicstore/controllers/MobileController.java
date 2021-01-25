@@ -9,6 +9,7 @@ import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.service.MobileDeviceService;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +51,7 @@ public class MobileController {
         model.addAttribute("externalMemories",mobileService.getExtMems());
         model.addAttribute("cameras",mobileService.getCameras());
         model.addAttribute("mobiles", mobileService.getAllAsHTML());
+        model.addAttribute("basket",basket.stream().collect(Collectors.toList()));
         return "mobile";
     }
     
@@ -77,12 +79,13 @@ public class MobileController {
                 Double.valueOf(maxPrice), screenSize, brand,
                 request.getParameterValues("operMem"),intMem, extMem, camera,
                 request.getParameterValues("simCount"),request.getParameterValues("gps")));
+        model.addAttribute("basket",basket.stream().collect(Collectors.toList()));
         return "mobile";
     }
     
     @PostMapping("/buy/{id}")
     public String buy(@PathVariable("id") long id){
-        basket.add(mobileService.getAll().stream().filter(c->c.getId()==id).findFirst().get());        
+        basket.add(mobileService.readById(id));        
         return "redirect:\\mobile\\all";
     }
 }

@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -50,6 +51,7 @@ public class OrderController {
         this.basket=basket;
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/all")
     public String getAll(Model model){
         model.addAttribute("orders", orderService.getAll());
@@ -57,21 +59,23 @@ public class OrderController {
         return "orders";
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/read/{id}")
     public String read(@PathVariable("id")long id, Model model){
         model.addAttribute("order", orderService.readById(id));
         return "/order-details";
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id")long id){
         orderService.delete(id);
         return "redirect:/orders/all";
-    }
+    }    
     
     @PostMapping("/create")
     public String create(){
-        Order order=new Order();
+        Order order=new Order();        
         order.setTvs((basket.stream().filter(c->c instanceof Television)
                 .map(c->(Television)c)).collect(Collectors.toList()));
         order.setMobiles((basket.stream().filter(c->c instanceof MobileDevice)
@@ -85,7 +89,7 @@ public class OrderController {
         orderService.create(order);
         basket.clear();        
         return "redirect:/index";
-    }
+    }    
     
     @PostMapping("/remove/{index}")
     public String remove(@RequestHeader("Referer") String referer,@PathVariable("index")int index){

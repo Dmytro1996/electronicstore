@@ -5,6 +5,11 @@
  */
 package com.mycompany.electronicstore.controller;
 
+import com.mycompany.electronicstore.model.Commodity;
+import com.mycompany.electronicstore.service.LaptopService;
+import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +31,10 @@ public class LaptopControllerTests {
     
     @Autowired
     private MockMvc mockMvc;
+    //@Autowired
+    //List<Commodity> basket;
+    @Autowired
+    private LaptopService laptopService;    
     
     @Test
     public void getAllTest() throws Exception{
@@ -33,12 +42,30 @@ public class LaptopControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attributeExists("laptops"));
     }
     
-    //@Test
+    @Test
     public void filterTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.post("/laptop/filter").param("minPrice", "10000")
                 .param("maxPrice", "100000").param("brand", "Apple").param("screenSize", "15")
                 .param("resolution", "All resolutions").param("intMem", "All"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.model().attributeExists("laptops"));
+    }
+    
+    @Test
+    public void buyTest() throws Exception{
+        //int sizeBefore=basket.size();
+        mockMvc.perform(MockMvcRequestBuilders.post("/laptop/buy/1"))
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+                //.andExpect(MockMvcResultMatchers.model().attributeExists("basket"));
+        /*List<Commodity> actualBasket=(List<Commodity>)mockMvc.perform(MockMvcRequestBuilders.get("/laptop/all"))
+                .andReturn().getModelAndView().getModel().get("basket");
+        assertTrue(actualBasket.contains(laptopService.readById(1)));*/
+        //assertEquals(sizeBefore+1,basket.size());
+    }
+    
+    @Test
+    public void buyWithInvalidIdTest() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.post("/laptop/buy/-1"))
+                .andExpect(MockMvcResultMatchers.status().is5xxServerError());
     }
 }

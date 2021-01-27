@@ -33,7 +33,7 @@ public class MobileControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attributeExists("mobiles"));
     }
     
-    //@Test
+    @Test
     public void filterTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.post("/mobile/filter").param("minPrice", "1000")
                 .param("maxPrice", "100000").param("brand", "Apple").param("screenSize", "5")
@@ -42,5 +42,17 @@ public class MobileControllerTests {
                 .param("gps", new String[]{"true"}))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.model().attributeExists("mobiles"));
+    }
+    
+    @Test
+    public void buyTest() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.post("/mobile/buy/1"))
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+    }
+    
+    @Test
+    public void buyWithInvalidIdTest() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.post("/mobile/buy/-1"))
+                .andExpect(MockMvcResultMatchers.status().is5xxServerError());
     }
 }

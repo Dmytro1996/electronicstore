@@ -33,7 +33,7 @@ public class TvControllerTests {
                 .andExpect(MockMvcResultMatchers.model().attributeExists("tvs"));
     }
     
-    //@Test
+    @Test
     public void filterTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.post("/tv/filter").param("minPrice", "10000")
                 .param("maxPrice", "50000").param("brand", "Samsung").param("screenSizeRange", "40-50")
@@ -41,5 +41,17 @@ public class TvControllerTests {
                 .param("threeD", new String[]{"true"}))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.model().attributeExists("tvs"));
+    }
+    
+    @Test
+    public void buyTest() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.post("/tv/buy/1"))
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
+    }
+    
+    @Test
+    public void buyWithInvalidIdTest() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.post("/tv/buy/-1"))
+                .andExpect(MockMvcResultMatchers.status().is5xxServerError());
     }
 }

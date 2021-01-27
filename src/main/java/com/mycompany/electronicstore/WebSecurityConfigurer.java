@@ -38,10 +38,10 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/users/create","/acc/**","/tv/**","/laptop/**",
-                "/mobile/**","/orders/**","/javascript/**","/images/**","/css/**")
-                .permitAll().anyRequest().authenticated().and().formLogin()
-                .loginPage("/").loginProcessingUrl("/login")
+        http.authorizeRequests().antMatchers("/users/create","/index","/acc/**",
+                "/tv/**","/laptop/**","/mobile/**","/orders/**","/javascript/**",
+                "/images/**","/css/**").permitAll().anyRequest().authenticated()
+                .and().formLogin().loginPage("/").loginProcessingUrl("/login")
                 .defaultSuccessUrl("/index").failureUrl("/error?userNotFound=true")
                 .permitAll().and().logout().logoutUrl("/logout")
                 .logoutSuccessUrl("/index").deleteCookies("JSESSIONID");

@@ -9,6 +9,7 @@ import com.mycompany.electronicstore.details.UserDetailsImpl;
 import com.mycompany.electronicstore.exception.NullEntityReferenceException;
 import com.mycompany.electronicstore.model.User;
 import com.mycompany.electronicstore.repository.UserRepository;
+import com.mycompany.electronicstore.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,7 @@ import org.springframework.stereotype.Service;
  * @author dmytr
  */
 @Service
-public class UserServiceImpl implements UserDetailsService {
+public class UserServiceImpl implements UserService,UserDetailsService {
     
     private UserRepository userRepo;
     
@@ -44,7 +45,7 @@ public class UserServiceImpl implements UserDetailsService {
         if(userRepo.findById(id).isPresent()){
             return userRepo.findById(id).get();
         }
-        throw new EntityNotFoundException("Order with id="+id+" does not exist");
+        throw new EntityNotFoundException("User with id="+id+" does not exist");
     }
     
     public List<User> getAll(){

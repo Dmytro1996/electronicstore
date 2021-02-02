@@ -5,6 +5,7 @@
  */
 package com.mycompany.electronicstore.controllers;
 
+import com.mycompany.electronicstore.details.UserDetailsImpl;
 import com.mycompany.electronicstore.model.Role;
 import com.mycompany.electronicstore.model.User;
 import com.mycompany.electronicstore.service.UserService;
@@ -13,6 +14,8 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -56,7 +59,11 @@ public class UserController {
             return "registration";
         } 
         logger.info("Does not have errors");
-        userService.create(user);
+        //userService.create(user);
+        UserDetailsImpl userDetails=new UserDetailsImpl(userService.create(user));
+        SecurityContextHolder.getContext().setAuthentication(
+                new UsernamePasswordAuthenticationToken(userDetails,
+                userDetails.getPassword(),userDetails.getAuthorities()));
         return "redirect:/index";
     }
     

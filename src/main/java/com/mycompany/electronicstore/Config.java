@@ -31,16 +31,6 @@ public class Config {
             proxyMode=ScopedProxyMode.TARGET_CLASS)
     public List<Commodity> bakset(){
         return new ArrayList<Commodity>();
-    }
-    
-    @Bean
-    public CustomScopeConfigurer scopeConfigurer() {
-        CustomScopeConfigurer configurer = new CustomScopeConfigurer();
-        Map<String, Object> workflowScope = new HashMap<String, Object>();
-        workflowScope.put("session", new SimpleThreadScope());
-        configurer.setScopes(workflowScope);
-
-        return configurer;
-  }
+    }    
     
 }

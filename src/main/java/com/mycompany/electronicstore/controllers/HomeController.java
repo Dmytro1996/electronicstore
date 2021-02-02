@@ -34,7 +34,7 @@ public class HomeController {
     @RequestMapping({"/","/index"})
     public String home(Model model){
         List<? extends Commodity> comms=orderService.getAll().stream()
-                .map(c->c.getCommodities()).flatMap(Collection::stream)
+                .map(c->c.getCommodities()).flatMap(Collection::stream).distinct()
                 .sorted((c1,c2)->{return c2.getOrders().size()-c1.getOrders().size();})
                 .limit(4).collect(Collectors.toList());        
         logger.info("Comms:"+comms.toString());

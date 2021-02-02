@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -99,5 +100,23 @@ public class OrderController {
             referer=referer.replace("filter", "all");
         }        
         return "redirect:"+referer+"?shouldBasketBeOpened=true";
+    }
+    
+    @PostMapping("/filter")
+    public String filter(@RequestParam("isExecuted") String isExecuted,Model model){
+        if(!isExecuted.equals("All")){
+            model.addAttribute("orders", orderService.getAll().stream().filter(o->
+                    o.isExecuted()==Boolean.valueOf(isExecuted)).collect(Collectors.toList()));
+            return "orders";
+        }
+        return "redirect:/orders/all";
+    }
+    
+    @PostMapping("/execute/{id}")
+    public String execute(@PathVariable("id")long id){
+        Order order=orderService.readById(id);
+        order.setExecuted(true);
+        orderService.create(order);
+        return "redirect:/orders/read/"+id;
     }
 }

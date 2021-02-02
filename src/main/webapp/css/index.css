@@ -248,6 +248,10 @@ footer h2{
     font-size: 20px;    
 }
 
+#ordersForm{    
+    text-align: center;
+}
+
 /*#popup_window form{
     display:none;
 }*/

@@ -23,12 +23,24 @@
                 <input type="button" id="basket" value="Basket">
             </div>
         </div>
+        <form action="/orders/filter" id="ordersForm" method="POST">
+            <label>All
+            <input type="radio" name="isExecuted" value="all" checked/>
+            </label>
+            <label>Executed
+            <input type="radio" name="isExecuted" value="true"/>
+            </label>
+            <label>Unexecuted
+            <input type="radio" name="isExecuted" value="false"/>
+            </label>
+            <input type="submit" value="Submit"/>
+        </form>
         <table>
               <tr>
                   <th>Id</th>
                   <th>Fullname</th>
                   <th colspan="2">Executed</th>                  
-              </tr>
+              </tr>              
               <c:forEach items="${orders}" var="order">
                   <tr>
                       <td>${order.getId()}</td>

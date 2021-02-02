@@ -4,6 +4,7 @@
     Author     : dmytr
 --%>
 
+<%@page import="com.mycompany.electronicstore.model.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -57,5 +58,15 @@
                 <td>${order.getCommodities().stream().map(c->c.getPrice()).reduce(0, (acc,x)->acc+x)}</td>
             </tr>
         </table>
+            <%
+                Order order=(Order)request.getAttribute("order");
+                if(!order.isExecuted()){
+                    out.println(
+                        "<form action=\"/orders/execute/"+order.getId()+"\" method=\"POST\">"+
+                        "<input type=\"submit\" id=\"execute\" value=\"Mark as executed\"/>"+
+                        "</form>"
+                    );
+                }
+            %>            
     </body>
 </html>

@@ -7,6 +7,7 @@ package com.mycompany.electronicstore.controllers;
 
 import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.service.AccesorieService;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
@@ -48,13 +49,14 @@ public class AccesorieController {
     @PostMapping("/filter")
     public String getFiltered(Model model, @RequestParam("minPrice")String minPrice,
             @RequestParam("maxPrice")String maxPrice, @RequestParam("brand")String brand,
-            HttpServletRequest request){        
+            HttpServletRequest request){ 
+        logger.info(""+Arrays.toString(request.getParameterValues("type")));
         model.addAttribute("acc", accService.getByCriterias(Double.valueOf(minPrice),
                 Double.valueOf(maxPrice),brand, request.getParameterValues("type")));
         model.addAttribute("brands",accService.getBrands());
-        model.addAttribute("types",accService.getTypes());
-        model.addAttribute("acc", accService.getAllAsHTML());
+        model.addAttribute("types",accService.getTypes());        
         model.addAttribute("basket",basket.stream().collect(Collectors.toList()));
+        logger.info("basket size:"+basket.size());
         return "accesories";
     }
     

@@ -11,6 +11,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class AccesorieTests {
     
     private static Accesorie acc;
-    private static Brand brand;
+    private static Brand brand;    
     
     @BeforeEach
     public void init(){
@@ -97,5 +98,46 @@ public class AccesorieTests {
     
     private static Stream<Arguments> provideInvalidBrands(){
         return Stream.of(Arguments.of(null,null));
+    }
+    
+    @ParameterizedTest
+    @MethodSource("provideEqualCommodities")
+    public void equalsHahCodeForEqualCommoditiesTest(Commodity input, Commodity errorValue){
+        assertTrue(acc.equals(input) && acc.hashCode()==input.hashCode());
+    }
+    
+    private static Stream<Arguments> provideEqualCommodities(){
+        Accesorie sameAcc=acc;
+        Accesorie accWithSameFields=new Accesorie();
+        accWithSameFields.setId(acc.getId());
+        accWithSameFields.setBrand(acc.getBrand());
+        accWithSameFields.setModel(acc.getModel());
+        accWithSameFields.setPrice(acc.getPrice());
+        accWithSameFields.setType(acc.getType());
+        return Stream.of(Arguments.of(acc,acc),
+                Arguments.of(sameAcc, sameAcc),
+                Arguments.of(accWithSameFields, accWithSameFields));
+    }
+    
+    @ParameterizedTest
+    @MethodSource("provideNotEqualCommodities")
+    public void equalsForNotEqualCommoditiesTest(Commodity input, Commodity errorValue){
+        assertTrue(!acc.equals(input));        
+    }
+    
+    private static Stream<Arguments> provideNotEqualCommodities(){
+        return Stream.of(Arguments.of(null,null),
+                Arguments.of(new Accesorie(), new Accesorie()));
+    }
+    
+    @Test
+    public void hashCodeForNotEqualCommodities(){
+        Accesorie notEqualAcc=new Accesorie();
+        notEqualAcc.setId(2);
+        notEqualAcc.setBrand(brand);
+        notEqualAcc.setModel("model");
+        notEqualAcc.setPrice(5000);
+        notEqualAcc.setType(acc.getType());
+        assertTrue(acc.hashCode()!=notEqualAcc.hashCode());
     }
 }

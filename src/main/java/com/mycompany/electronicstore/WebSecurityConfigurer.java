@@ -42,7 +42,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 "/tv/**","/laptop/**","/mobile/**","/orders/**","/javascript/**",
                 "/images/**","/css/**").permitAll().anyRequest().authenticated()
                 .and().formLogin().loginPage("/").loginProcessingUrl("/login")
-                .defaultSuccessUrl("/index").failureUrl("/error?userNotFound=true")
+                .defaultSuccessUrl("/index").failureUrl("/index?userNotFound=true")
                 .permitAll().and().logout().logoutUrl("/logout")
                 .logoutSuccessUrl("/index").deleteCookies("JSESSIONID");
         http.csrf().disable();

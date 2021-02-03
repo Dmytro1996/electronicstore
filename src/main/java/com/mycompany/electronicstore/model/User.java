@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Length;
 
 /**
  *
@@ -45,6 +46,9 @@ public class User {
     private String email;
     @NotBlank
     @Column
+    @Pattern(regexp="([0-9]*[A-Za-z]+[0-9]+[\\W]*[A-Za-z]*)+", 
+            message="Must be at least 6 characterslong, contain at least 1 digit or 1 number")
+    @Length(min=6, message="Must be at least 6 characterslong, contain at least 1 digit or 1 number")
     private String password;
     @Column
     @NotNull

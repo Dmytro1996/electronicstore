@@ -26,6 +26,14 @@
 </sec:authorize>
 <div id="loginFormContainer">
         <input type="button" id="closeLoginForm" value="&times;"><br>
+        <%
+            if(request.getParameter("userNotFound")!=null){
+                if(request.getParameter("userNotFound").equals("true")){
+                    out.print("<div id=\"userNotFoundErrorMessage\">Wrong email"
+                            + " or password.Try again.</div>");
+                }
+            }
+        %>
         <form action="/login" method="POST">
             <table>                
                 <tr>

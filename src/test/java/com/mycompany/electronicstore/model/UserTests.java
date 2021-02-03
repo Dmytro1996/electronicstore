@@ -110,7 +110,11 @@ public class UserTests {
     
     public static Stream<Arguments> provideInvalidPasswords(){
         return Stream.of(Arguments.of("", ""),
-                Arguments.of(null, null));
+                Arguments.of(null, null),
+                Arguments.of("aaaaaaaa", "aaaaaaaa"),
+                Arguments.of("111111", "111111"),
+                Arguments.of("a1a1", "a1a1"),
+                Arguments.of("a1a1@", "a1a1@"));
     }
     
     @Test

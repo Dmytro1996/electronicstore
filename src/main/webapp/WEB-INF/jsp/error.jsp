@@ -21,7 +21,21 @@
                 <input type="button" id="basket" value="Basket">
             </div>
         </div>
-        <h1 style="margin: 0 auto; width: max-content">${code}</h1>
-        <h2 style="margin: 0 auto; width: max-content">${message}</h2>        
+        <h1 style="margin: 0 auto; width: max-content">
+            ${code}
+            <%
+                if(request.getAttribute("code")==null){
+                    out.print("404 Not Found");
+                }
+            %>
+        </h1>
+        <h2 style="margin: 0 auto; width: max-content">
+            ${message}
+            <%
+                if(request.getAttribute("message")==null || request.getAttribute("message")==""){
+                    out.print("Page does not exist");
+                }
+            %>
+        </h2>        
     </body>
 </html>

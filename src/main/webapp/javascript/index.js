@@ -111,6 +111,9 @@ function closeLoginMenu(){
 }
 let loginBtn=document.querySelector('#loginButton');
 if(loginBtn!==null){loginBtn.addEventListener('click',showLoginForm);}
+if(document.getElementById('userNotFoundErrorMessage')!==null){
+    showLoginForm();
+}
 var loginToOrder=document.querySelector('#loginToOrder');
 if(loginToOrder!==null){
     loginToOrder.onclick=function(){  

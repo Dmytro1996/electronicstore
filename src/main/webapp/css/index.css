@@ -267,6 +267,9 @@ footer h2{
     flex-direction: column;
     align-items: center;    
 }
+#userNotFoundErrorMessage{
+    color:red;
+}
 @media(max-width:980px){
   #links{    
     display:flex;

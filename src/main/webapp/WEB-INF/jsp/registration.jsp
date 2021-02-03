@@ -22,8 +22,8 @@
                 </h1><br>
                 <input type="button" id="basket" value="Basket">
             </div>
-        </div>        
-        <form:form action="/users/create" method="POST" modelAttribute="user">
+        </div>         
+        <form:form action="/users/create" id="registrationForm" method="POST" modelAttribute="user">
             <table>
                 <tr>
                     <td>Firstname:</td>
@@ -55,7 +55,7 @@
                     </td>
                 </tr>
             </table>
-            <input type="submit" value="register"/>
-        </form:form>
+            <input type="submit" id="register" value="Register"/>
+        </form:form>        
     </body>
 </html>

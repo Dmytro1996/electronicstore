@@ -13,6 +13,7 @@
         <title>Orders</title>
         <link rel="stylesheet" href="/css/index.css" type="text/css"/>
         <link rel="stylesheet" href="/css/orders.css" type="text/css"/>
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     </head>
     <body>        
         <div id="headerContainer">
@@ -20,7 +21,7 @@
                 <h1 id="title">
                     <a href="/index" id="homeLink"><img src="/images/favicon.png" alt="Electronic Webstore">Electronic Webstore</a>
                 </h1><br>
-                <input type="button" id="basket" value="Basket">
+                <button id="basket" class="fas fa-shopping-cart">Basket</button>
             </div>
         </div>
         <form action="/orders/filter" id="ordersForm" method="POST">
@@ -33,7 +34,7 @@
             <label>Unexecuted
             <input type="radio" name="isExecuted" value="false"/>
             </label>
-            <input type="submit" value="Submit"/>
+            <input type="submit" id="submitOrderFilterCriteria" value="Submit"/>
         </form>
         <table>
               <tr>

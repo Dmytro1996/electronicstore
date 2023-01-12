@@ -59,6 +59,6 @@ public class AccesorieControllerTests {
     @Test
     public void buyWithInvalidIdTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.post("/acc/buy/-1"))
-                .andExpect(MockMvcResultMatchers.status().is5xxServerError());
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 }

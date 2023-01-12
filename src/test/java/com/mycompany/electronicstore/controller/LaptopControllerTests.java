@@ -66,6 +66,6 @@ public class LaptopControllerTests {
     @Test
     public void buyWithInvalidIdTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.post("/laptop/buy/-1"))
-                .andExpect(MockMvcResultMatchers.status().is5xxServerError());
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 }

@@ -52,6 +52,6 @@ public class TvControllerTests {
     @Test
     public void buyWithInvalidIdTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.post("/tv/buy/-1"))
-                .andExpect(MockMvcResultMatchers.status().is5xxServerError());
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 }

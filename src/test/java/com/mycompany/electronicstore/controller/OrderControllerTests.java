@@ -110,7 +110,7 @@ public class OrderControllerTests {
     @Test
     public void readUnexistingOrderTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/orders/read/-1"))
-                .andExpect(MockMvcResultMatchers.status().is5xxServerError());
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
     
     @Test
@@ -122,7 +122,7 @@ public class OrderControllerTests {
     @Test
     public void deleteUnexistingOrderTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/orders/delete/-1"))
-                .andExpect(MockMvcResultMatchers.status().is5xxServerError());
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
     
     @Test

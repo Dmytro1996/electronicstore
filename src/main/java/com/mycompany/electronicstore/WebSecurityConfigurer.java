@@ -27,25 +27,25 @@ import org.springframework.web.context.WebApplicationContext;
  *
  * @author dmytr
  */
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(
+//@Configuration
+//@EnableWebSecurity
+/*@EnableGlobalMethodSecurity(
         prePostEnabled=true,
         securedEnabled=true,
         jsr250Enabled=true        
-)
+)*/
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/users/create","/index","/acc/**",
+        /*http.authorizeRequests().antMatchers("/users/create","/index","/acc/**",
                 "/tv/**","/laptop/**","/mobile/**","/orders/**","/javascript/**",
                 "/images/**","/css/**").permitAll().anyRequest().authenticated()
                 .and().formLogin().loginPage("/").loginProcessingUrl("/login")
                 .defaultSuccessUrl("/index").failureUrl("/index?userNotFound=true")
                 .permitAll().and().logout().logoutUrl("/logout")
                 .logoutSuccessUrl("/index").deleteCookies("JSESSIONID");
-        http.csrf().disable();
+        http.csrf().disable();*/
     }
     
     @Autowired

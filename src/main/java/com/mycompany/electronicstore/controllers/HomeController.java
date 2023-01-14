@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,11 +34,13 @@ public class HomeController {
     Logger logger=LoggerFactory.getLogger(HomeController.class);
    
     @RequestMapping({"/","/index"})
-    public String home(Model model){
+    public String home(Model model, @AuthenticationPrincipal OidcUser user){
         List<? extends Commodity> comms=orderService.getAll().stream()
                 .map(c->c.getCommodities()).flatMap(Collection::stream).distinct()
                 .sorted((c1,c2)->{return c2.getOrders().size()-c1.getOrders().size();})
-                .limit(4).collect(Collectors.toList());        
+                .limit(4).collect(Collectors.toList()); 
+        logger.info("User info:\n");
+        logger.info("User: "+user.getGivenName());
         logger.info("Comms:"+comms.toString());
         model.addAttribute("popularCommodities", comms);        
         model.addAttribute("basket",basket.stream().collect(Collectors.toList()));

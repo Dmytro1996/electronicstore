@@ -19,7 +19,7 @@
 <sec:authorize access="isAuthenticated()">
     <div id="logoutButtonContainer" sec:authorize access=isAuthenticated()">
         <form action="/logout">
-            Hello,<sec:authentication property="principal.firstName"/>
+            Hello,<sec:authentication property="principal"/>
             <input type="submit" id="logoutButton" value="Logout"/>
         </form>
     </div>

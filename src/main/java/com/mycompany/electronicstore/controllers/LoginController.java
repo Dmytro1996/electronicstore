@@ -28,6 +28,7 @@ public class LoginController {
     
     @RequestMapping("/logout")
     public String logout(){
+        logger.info("Inside logout");
         SecurityContextHolder.clearContext();
         return "redirect:/index";
     }

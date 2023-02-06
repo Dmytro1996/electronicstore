@@ -40,7 +40,9 @@ public class HomeController {
                 .sorted((c1,c2)->{return c2.getOrders().size()-c1.getOrders().size();})
                 .limit(4).collect(Collectors.toList()); 
         logger.info("User info:\n");
-        logger.info("User: "+user.getGivenName());
+        logger.info("User is null:"+(user==null));
+        logger.info("User: "+(user==null?"null":user.getGivenName()));
+        logger.info("Authorities:"+(user==null?"null":user.getAuthorities()));
         logger.info("Comms:"+comms.toString());
         model.addAttribute("popularCommodities", comms);        
         model.addAttribute("basket",basket.stream().collect(Collectors.toList()));

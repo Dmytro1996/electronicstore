@@ -12,14 +12,14 @@
           <button id="loginMenuOpener" class="fas fa-sign-in-alt" >Sign in</button>          
           <div id="loginMenu">
               <a href="/users/create">Registration</a>
-              <input type="button" id="loginButton" value="Login"/>
+              <a href="/oauth2/authorization/okta">Login</a>
           </div>
     </div>
 </sec:authorize>
 <sec:authorize access="isAuthenticated()">
     <div id="logoutButtonContainer" sec:authorize access=isAuthenticated()">
         <form action="/logout">
-            Hello,<sec:authentication property="principal"/>
+            Hello,<sec:authentication property="principal.givenName"/>
             <input type="submit" id="logoutButton" value="Logout"/>
         </form>
     </div>

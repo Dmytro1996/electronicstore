@@ -5,11 +5,9 @@
  */
 package com.mycompany.electronicstore.controller;
 
-import com.mycompany.electronicstore.details.UserDetailsImpl;
 import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.model.Order;
 import com.mycompany.electronicstore.service.OrderService;
-import com.mycompany.electronicstore.service.UserService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,8 +57,6 @@ public class OrderControllerTests {
     @Autowired
     private WebApplicationContext context;
     @Autowired
-    private UserService userService;
-    @Autowired
     private List<Commodity> basket;
     
     @TestConfiguration
@@ -80,12 +76,11 @@ public class OrderControllerTests {
     public void setUp(){
         mockMvc=MockMvcBuilders.webAppContextSetup(context)
                 .apply(SecurityMockMvcConfigurers.springSecurity()).build();
-        UserDetails userDetails=new UserDetailsImpl(userService.readById(1));
-        Authentication auth=new UsernamePasswordAuthenticationToken(userDetails,
+        /*Authentication auth=new UsernamePasswordAuthenticationToken(userDetails,
                 userDetails.getPassword(),userDetails.getAuthorities());
         SecurityContext securityContext=Mockito.mock(SecurityContext.class);
         Mockito.when(securityContext.getAuthentication()).thenReturn(auth);
-        SecurityContextHolder.setContext(securityContext);        
+        SecurityContextHolder.setContext(securityContext); */       
     }
     
     @Test

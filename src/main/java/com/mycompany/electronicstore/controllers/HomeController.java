@@ -42,6 +42,7 @@ public class HomeController {
         logger.info("User info:\n");
         logger.info("User is null:"+(user==null));
         logger.info("User: "+(user==null?"null":user.getGivenName()));
+        logger.info("User id: "+(user==null?"null":user.getName()));
         logger.info("Authorities:"+(user==null?"null":user.getAuthorities()));
         logger.info("Comms:"+comms.toString());
         model.addAttribute("popularCommodities", comms);        

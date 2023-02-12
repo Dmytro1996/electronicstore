@@ -64,21 +64,4 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         successHandler.setPostLogoutRedirectUri("http://localhost:"+env.getProperty("server.port"));
         return successHandler;
     }
-    
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth, AuthenticationProvider provider) throws Exception{        
-        auth.authenticationProvider(provider);
-    }
-    
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-    
-    /*@Bean
-    @Scope(value=WebApplicationContext.SCOPE_SESSION,
-            proxyMode=ScopedProxyMode.TARGET_CLASS)
-    public List<Commodity> bakset(){
-        return new ArrayList<Commodity>();
-    }*/
 }

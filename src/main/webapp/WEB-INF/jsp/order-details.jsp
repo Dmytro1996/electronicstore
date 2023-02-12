@@ -31,11 +31,11 @@
             </tr>
             <tr>
                 <td>Ordered by:</td>
-                <td>${order.getUser().getFirstName()} ${order.getUser().getLastName()}</td>
+                <td>${user.getFirstName()} ${user.getLastName()}</td>
             </tr>
             <tr>
                 <td>Email:</td>
-                <td>${order.getUser().getEmail()}</td>
+                <td>${user.getEmail()}</td>
             </tr>
             <tr>
                 <td>Executed:</td>

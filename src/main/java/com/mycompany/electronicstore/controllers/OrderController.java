@@ -5,7 +5,6 @@
  */
 package com.mycompany.electronicstore.controllers;
 
-import com.mycompany.electronicstore.details.UserDetailsImpl;
 import com.mycompany.electronicstore.model.Accesorie;
 import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.model.Laptop;
@@ -13,16 +12,20 @@ import com.mycompany.electronicstore.model.MobileDevice;
 import com.mycompany.electronicstore.model.Order;
 import com.mycompany.electronicstore.model.Television;
 import com.mycompany.electronicstore.service.OrderService;
-import com.mycompany.electronicstore.service.UserService;
-import com.mycompany.electronicstore.service.impl.UserServiceImpl;
+import com.okta.sdk.client.Client;
+import com.okta.sdk.resource.user.UserProfile;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +47,7 @@ public class OrderController {
     Logger logger=LoggerFactory.getLogger(OrderController.class);
     private List<Commodity> basket;
     @Autowired
-    private UserServiceImpl userService;
+    private Client client;
     
     @Autowired
     public OrderController(OrderService orderService, List<Commodity> basket){
@@ -55,7 +58,7 @@ public class OrderController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/all")
     public String getAll(Model model){
-        model.addAttribute("orders", orderService.getAll());
+        addOrdersToModel(model, orderService.getAll());
         logger.info("Size:"+orderService.getAll().size());
         return "orders";
     }
@@ -63,7 +66,10 @@ public class OrderController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/read/{id}")
     public String read(@PathVariable("id")long id, Model model){
-        model.addAttribute("order", orderService.readById(id));
+        Order order=orderService.readById(id);
+        UserProfile user=client.getUser(order.getUserId()).getProfile();
+        model.addAttribute("order", order);
+        model.addAttribute("user", user);
         return "/order-details";
     }
     
@@ -75,7 +81,7 @@ public class OrderController {
     }    
     
     @PostMapping("/create")
-    public String create(){
+    public String create(@AuthenticationPrincipal OidcUser user){
         Order order=new Order();        
         order.setTvs((basket.stream().filter(c->c instanceof Television)
                 .map(c->(Television)c)).collect(Collectors.toList()));
@@ -85,8 +91,7 @@ public class OrderController {
                 .map(c->(Laptop)c)).collect(Collectors.toList()));
         order.setAcc((basket.stream().filter(c->c instanceof Accesorie)
                 .map(c->(Accesorie)c)).collect(Collectors.toList()));
-        UserDetailsImpl user=(UserDetailsImpl)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        order.setUser(userService.readById(user.getId()));
+        order.setUserId(user.getName());
         orderService.create(order);
         basket.clear();        
         return "redirect:/index";
@@ -104,8 +109,11 @@ public class OrderController {
     
     @PostMapping("/filter")
     public String filter(@RequestParam("isExecuted") String isExecuted,Model model){
-        if(!isExecuted.equals("All")){
-            model.addAttribute("orders", orderService.getAll().stream().filter(o->
+        logger.info("isExecuted: "+isExecuted);
+        logger.info("isExecuted equals to \"all\": "+!isExecuted.equals("all"));
+        if(!isExecuted.equals("all")){
+            logger.info("inside if block in OrderController.filter()");
+            addOrdersToModel(model, orderService.getAll().stream().filter(o->
                     o.isExecuted()==Boolean.valueOf(isExecuted)).collect(Collectors.toList()));
             return "orders";
         }
@@ -118,5 +126,13 @@ public class OrderController {
         order.setExecuted(true);
         orderService.create(order);
         return "redirect:/orders/read/"+id;
+    }
+    
+    private void addOrdersToModel(Model model, List<Order> orders){
+        Map<Order, String> orderMap=new HashMap<>();
+        orders.stream().forEach(order->{
+            UserProfile userProfile=client.getUser(order.getUserId()).getProfile();
+            orderMap.put(order, userProfile.getFirstName()+" "+userProfile.getLastName());});
+        model.addAttribute("orderMap", orderMap.entrySet());
     }
 }

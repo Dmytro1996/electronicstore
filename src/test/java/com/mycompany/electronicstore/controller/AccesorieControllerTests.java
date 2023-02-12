@@ -5,7 +5,6 @@
  */
 package com.mycompany.electronicstore.controller;
 
-import com.mycompany.electronicstore.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +29,7 @@ public class AccesorieControllerTests {
     private MockMvc mockMvc;
     
     @Autowired
-    private WebApplicationContext context;
-    
-    @Autowired
-    private UserServiceImpl userService;    
+    private WebApplicationContext context; 
     
     @Test
     public void getAllTest() throws Exception{

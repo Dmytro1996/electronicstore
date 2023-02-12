@@ -31,9 +31,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NotNull
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
+    @Column(name="user_id")
+    private String userId;
     @Column
     private boolean executed;
     @ManyToMany
@@ -64,8 +63,8 @@ public class Order {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
     public boolean isExecuted() {
@@ -100,8 +99,8 @@ public class Order {
         this.id = id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public void setExecuted(boolean executed) {

@@ -5,11 +5,8 @@
  */
 package com.mycompany.electronicstore.controllers;
 
-import com.mycompany.electronicstore.details.UserDetailsImpl;
 import com.mycompany.electronicstore.model.Role;
 import com.mycompany.electronicstore.model.User;
-import com.mycompany.electronicstore.service.UserService;
-import com.mycompany.electronicstore.service.impl.UserServiceImpl;
 import com.okta.sdk.client.Client;
 import com.okta.sdk.resource.user.UserBuilder;
 import javax.validation.Valid;
@@ -35,13 +32,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/users")
 public class UserController {
     
+    @Autowired
     private Client client;
-    private UserServiceImpl userService;
     Logger logger=LoggerFactory.getLogger(UserController.class);
     
     @Autowired
-    public UserController(UserServiceImpl userService, Client client){
-        this.userService=userService;
+    public UserController(Client client){
         this.client=client;
     }
     
@@ -49,7 +45,6 @@ public class UserController {
     public String create(Model model){
         logger.info("Inside create(Get)");
         User user=new User();
-        user.setRole(Role.USER);
         model.addAttribute("user",user);        
         return "registration";
     }
@@ -67,11 +62,6 @@ public class UserController {
         UserBuilder.instance().setEmail(user.getEmail()).setFirstName(user.getFirstName())
                 .setLastName(user.getLastName()).setPassword(user.getPassword().toCharArray())
                 .setActive(true).buildAndCreate(client);
-        //userService.create(user);
-        /*UserDetailsImpl userDetails=new UserDetailsImpl(userService.create(user));
-        SecurityContextHolder.getContext().setAuthentication(
-                new UsernamePasswordAuthenticationToken(userDetails,
-                userDetails.getPassword(),userDetails.getAuthorities()));*/
         return "redirect:/index";
     }
     

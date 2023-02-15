@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -48,6 +50,8 @@ public class OrderController {
     private List<Commodity> basket;
     @Autowired
     private Client client;
+    @Autowired
+    private JavaMailSender emailSender;
     
     @Autowired
     public OrderController(OrderService orderService, List<Commodity> basket){
@@ -93,6 +97,7 @@ public class OrderController {
                 .map(c->(Accesorie)c)).collect(Collectors.toList()));
         order.setUserId(user.getName());
         orderService.create(order);
+        sendEmail(user.getGivenName(), user.getEmail());        
         basket.clear();        
         return "redirect:/index";
     }    
@@ -134,5 +139,16 @@ public class OrderController {
             UserProfile userProfile=client.getUser(order.getUserId()).getProfile();
             orderMap.put(order, userProfile.getFirstName()+" "+userProfile.getLastName());});
         model.addAttribute("orderMap", orderMap.entrySet());
+    }
+    
+    private void sendEmail(String username, String receiver){
+        String emailText="Hi "+username+"! Your order have been received and"+
+                " will be processed. You will be contacted by manager soon enough.";
+        SimpleMailMessage message=new SimpleMailMessage();
+        message.setTo(receiver);
+        message.setSubject("New order");
+        message.setText(emailText);
+        emailSender.send(message);
+        logger.info("Email sent");
     }
 }

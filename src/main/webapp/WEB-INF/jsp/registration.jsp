@@ -47,11 +47,17 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Phone:</td>
+                    <td>
+                        <form:input path="phone"/>
+                        <form:errors path="phone" cssStyle="color:red;"/>
+                    </td>
+                </tr>
+                <tr>
                     <td>Password:</td>
                     <td>
                         <form:input type="password" path="password"/>
                         <form:errors path="password" cssStyle="color:red;"/> 
-                        <form:input type="text" path="role" value="USER" hidden="true"/>
                     </td>
                 </tr>
             </table>

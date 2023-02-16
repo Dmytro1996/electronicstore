@@ -61,7 +61,7 @@ public class UserController {
         logger.info(client.listUsers().toString());
         UserBuilder.instance().setEmail(user.getEmail()).setFirstName(user.getFirstName())
                 .setLastName(user.getLastName()).setPassword(user.getPassword().toCharArray())
-                .setActive(true).buildAndCreate(client);
+                .setMobilePhone(user.getPhone()).setActive(true).buildAndCreate(client);
         return "redirect:/index";
     }
     

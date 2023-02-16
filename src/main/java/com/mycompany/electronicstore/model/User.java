@@ -27,8 +27,9 @@ public class User {
     private String lastName;
     @NotNull
     @Pattern(regexp = "[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}", message = "Must be a valid e-mail address")
-    @Column
     private String email;
+    @Pattern(regexp = "\\+?[0-9]{10,12}", message = "Must be a valid phone number")
+    private String phone;
     @NotBlank
     @Pattern(regexp="([0-9]*[A-Za-z]+[0-9]+[\\W]*[A-Za-z]*)+", 
             message="Must be at least 6 characterslong, contain at least 1 digit or 1 number")
@@ -54,6 +55,10 @@ public class User {
         return password;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -68,6 +73,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
     
     

@@ -5,9 +5,7 @@
  */
 package com.mycompany.electronicstore.model;
 
-import java.util.Arrays;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -33,15 +31,11 @@ public class UserTests {
     @BeforeEach
     public void init(){
         user=new User();
-        user.setId(1);
         user.setFirstName("Firstname");
         user.setLastName("Lastname");
         user.setEmail("mail@mail.com");
         user.setPassword("q1w2e3r4");
-        Order order=new Order();
-        order.setId(1);
-        user.setOrders(Arrays.asList(order));
-        user.setRole(Role.USER);
+        user.setPhone("380123456789");
     }
     
     @Test
@@ -54,8 +48,7 @@ public class UserTests {
         assertEquals("Lastname", user.getLastName());
         assertEquals("mail@mail.com", user.getEmail());
         assertEquals("q1w2e3r4", user.getPassword());
-        assertEquals("1", user.getOrders().stream().map(o->""+o.getId()).collect(Collectors.joining()));
-        assertEquals(Role.USER, user.getRole());
+        assertEquals("380123456789", user.getPhone());
         assertEquals(0, violations.size()); 
     }
     
@@ -117,14 +110,24 @@ public class UserTests {
                 Arguments.of("a1a1@", "a1a1@"));
     }
     
-    @Test
-    public void createUserWithInvalidRole(){
-        user.setRole(null);
+    @ParameterizedTest
+    @MethodSource("provideInvalidPhones")
+    public void createUserWithInvalidPhone(String input, String errorValue){
+        user.setEmail(input);
         ValidatorFactory factory=Validation.buildDefaultValidatorFactory();
         Validator validator=factory.getValidator();
         Set<ConstraintViolation<User>> violations=validator.validate(user);
         
         assertEquals(1, violations.size());
+    }
+    
+    public static Stream<Arguments> provideInvalidPhones(){
+        return Stream.of(Arguments.of("", ""),
+                Arguments.of(null, null),
+                Arguments.of("aaaaaaaa", "aaaaaaaa"),
+                Arguments.of("111111", "111111"),
+                Arguments.of("+12345", "+12345"),
+                Arguments.of("+38012a3456789", "+38012a3456789"));
     }
     
 }

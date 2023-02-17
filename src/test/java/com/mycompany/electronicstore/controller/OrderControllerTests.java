@@ -7,11 +7,17 @@ package com.mycompany.electronicstore.controller;
 
 import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.model.Order;
+import com.mycompany.electronicstore.model.User;
 import com.mycompany.electronicstore.service.OrderService;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import javax.servlet.ServletException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
@@ -26,13 +32,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.SimpleThreadScope;
-import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.core.oidc.OidcIdToken;
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -58,6 +70,8 @@ public class OrderControllerTests {
     private WebApplicationContext context;
     @Autowired
     private List<Commodity> basket;
+    @Autowired
+    private static ClientRegistration clientRegistration;
     
     @TestConfiguration
     static class TestConfig{
@@ -73,14 +87,26 @@ public class OrderControllerTests {
     }
     
     @BeforeEach
-    public void setUp(){
-        mockMvc=MockMvcBuilders.webAppContextSetup(context)
+    public void setUp() throws ServletException{
+        Map<String, Object> claims=new HashMap<>();
+        claims.put("groups", "ADMIN");
+        OidcIdToken token=new OidcIdToken("12345", Instant.now(), Instant.now().plusSeconds(60),claims);
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken(token));
+        SecurityContextHolderAwareRequestFilter authInjector= new SecurityContextHolderAwareRequestFilter();
+        authInjector.afterPropertiesSet();
+        mockMvc=MockMvcBuilders.webAppContextSetup(context).build();
+        /*mockMvc=MockMvcBuilders.webAppContextSetup(context)
                 .apply(SecurityMockMvcConfigurers.springSecurity()).build();
-        /*Authentication auth=new UsernamePasswordAuthenticationToken(userDetails,
-                userDetails.getPassword(),userDetails.getAuthorities());
+        User user =new User();
+        user.setFirstName("Bob");
+        user.setLastName("Robertson");
+        user.setEmail("bob@mail.com");
+        user.setPassword("A12345#");
+        Authentication auth=new UsernamePasswordAuthenticationToken(user,
+                user.getPassword(),Arrays.asList(new SimpleGrantedAuthority[]{new SimpleGrantedAuthority("ADMIN")}));
         SecurityContext securityContext=Mockito.mock(SecurityContext.class);
         Mockito.when(securityContext.getAuthentication()).thenReturn(auth);
-        SecurityContextHolder.setContext(securityContext); */       
+        SecurityContextHolder.setContext(securityContext);*/       
     }
     
     @Test
@@ -158,4 +184,11 @@ public class OrderControllerTests {
                 .header("Referer", "/tv/all"))
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
     }
+     
+     private OAuth2AuthenticationToken authenticationToken(OidcIdToken token){
+         Collection<GrantedAuthority> authorities=new ArrayList<>();
+         authorities.add(new SimpleGrantedAuthority("ADMIN"));
+         OidcUser user=new DefaultOidcUser(authorities, token);
+         return new OAuth2AuthenticationToken(user, authorities, "oidc");
+     }
 }

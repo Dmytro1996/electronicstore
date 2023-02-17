@@ -26,17 +26,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class OrderTests {
     
     private static Order order;
-    private static User user;
     
     @BeforeEach
     public void init(){
-        order=new Order();
-        user =new User();
-        user.setFirstName("Firstname");
-        user.setLastName("Lastname");
-        user.setEmail("mail@mail.com");
-        user.setPassword("q1w2e3r4");        
-        order.setUser(user);
+        order=new Order();      
+        order.setUserId("12345");
         Laptop laptop=new Laptop();
         laptop.setId(1);
         order.setLaptops(Arrays.asList(laptop));
@@ -58,7 +52,7 @@ public class OrderTests {
         Validator validator=factory.getValidator();
         Set<ConstraintViolation<Order>> violations=validator.validate(order);
         
-        assertEquals(order.getUser().getEmail(),user.getEmail());
+        assertEquals(order.getUserId(),"12345");
         assertEquals("1", order.getLaptops().stream().map(c->""+c.getId())
                 .collect(Collectors.joining()));
         assertEquals("2", order.getTvs().stream().map(c->""+c.getId())
@@ -75,8 +69,8 @@ public class OrderTests {
     }
     
     @Test
-    public void createOrderWithInvalidUser(){
-        order.setUser(null);
+    public void createOrderWithInvalidUserId(){
+        order.setUserId(null);
         ValidatorFactory factory=Validation.buildDefaultValidatorFactory();
         Validator validator=factory.getValidator();
         Set<ConstraintViolation<Order>> violations=validator.validate(order);

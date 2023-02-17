@@ -5,6 +5,7 @@
  */
 package com.mycompany.electronicstore.exception;
 
+import com.mycompany.electronicstore.model.User;
 import java.io.IOException;
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.ServletException;
@@ -47,7 +48,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR)
     public ModelAndView internalServerErrorHandler(HttpServletRequest request, Exception exception) {
-        logger.info("Not Found");        
+        logger.info("500 Server Error");
+        exception.printStackTrace();
         return getModelAndView(request, HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }    
         

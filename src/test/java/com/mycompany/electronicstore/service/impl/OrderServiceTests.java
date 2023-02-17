@@ -41,7 +41,7 @@ public class OrderServiceTests {
         order=new Order();
         order.setId(1);
         order.setExecuted(true);
-        order.setUser(new User());
+        order.setUserId("12345");
         Mockito.when(orderRepo.findById(1L)).thenReturn(Optional.of(order));
         Mockito.when(orderRepo.findById(2L)).thenReturn(Optional.empty());
         Mockito.when(orderRepo.findAll()).thenReturn(Arrays.asList(order));

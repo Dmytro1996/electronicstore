@@ -38,6 +38,10 @@
                 <td>${user.getEmail()}</td>
             </tr>
             <tr>
+                <td>Phone:</td>
+                <td>${(empty user.getMobilePhone())?"unknown":user.getMobilePhone()}</td>
+            </tr>
+            <tr>
                 <td>Executed:</td>
                 <td>${order.isExecuted()}</td>
             </tr>

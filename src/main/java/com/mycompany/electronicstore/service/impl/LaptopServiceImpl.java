@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mycompany.electronicstore.service.LaptopService;
 import javax.persistence.EntityNotFoundException;
+import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.stereotype.Service;
 
 /**
@@ -46,6 +47,7 @@ public class LaptopServiceImpl implements LaptopService {
         throw new EntityNotFoundException("Laptop wit id="+id+" not found");
     }
     
+    @Tool
     public List<Laptop> getAll(){
         return laptopRepo.findAll();
     }

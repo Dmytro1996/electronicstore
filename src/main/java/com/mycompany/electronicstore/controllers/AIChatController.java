@@ -5,16 +5,16 @@
 package com.mycompany.electronicstore.controllers;
 
 import com.mycompany.electronicstore.service.AiChatService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author User
  */
-@Controller
+@RestController
 @RequestMapping("/aichat")
 public class AIChatController {
 
@@ -26,6 +26,6 @@ public class AIChatController {
     
     @PostMapping("/send-message")
     public String receiveMessage(@RequestParam("message")String message) {
-        return aiChatService.processMessage(message);
+        return "{\"message\": \"" +aiChatService.processMessage(message) + "\"}";
     }
 }

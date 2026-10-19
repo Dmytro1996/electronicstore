@@ -48,6 +48,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests().antMatchers("/users/create","/index","/acc/**",
                 "/tv/**","/laptop/**","/mobile/**",/*"/orders/**",*/"/javascript/**",
+                "/aichat/**",
                 "/images/**","/css/**", "/").permitAll().anyRequest().authenticated()
                 .and().formLogin().loginPage("/")//.loginProcessingUrl("/login")
                 .defaultSuccessUrl("/index")/*.failureUrl("/index?userNotFound=true")

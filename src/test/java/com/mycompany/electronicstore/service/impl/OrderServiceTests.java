@@ -14,14 +14,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import javax.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 /**
  *
@@ -30,7 +30,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 public class OrderServiceTests {
     
     private static OrderService orderService;
-    @MockBean
+    @MockitoBean
     private static OrderRepository orderRepo;
     private static Order order;
     

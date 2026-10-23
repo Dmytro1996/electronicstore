@@ -18,8 +18,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
@@ -40,7 +40,7 @@ public class AccesorieServiceTests {
     @Autowired
     private AccesorieService accService;
     
-    @MockBean
+    @MockitoBean
     private AccesorieRepository accRepo;
     
     private Accesorie acc;

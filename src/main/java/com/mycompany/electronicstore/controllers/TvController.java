@@ -7,10 +7,9 @@ package com.mycompany.electronicstore.controllers;
 
 import com.mycompany.electronicstore.model.Commodity;
 import com.mycompany.electronicstore.service.TelevisionService;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

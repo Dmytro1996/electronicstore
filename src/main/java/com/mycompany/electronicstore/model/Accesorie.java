@@ -10,12 +10,12 @@ import electronicstore.exceptions.NumericValueException;
 import electronicstore.exceptions.ResolutionException;
 import electronicstore.exceptions.StringFieldException;*/
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 /**
  *
  * @author dmytr

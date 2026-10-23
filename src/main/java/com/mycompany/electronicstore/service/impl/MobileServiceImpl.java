@@ -5,14 +5,13 @@
  */
 package com.mycompany.electronicstore.service.impl;
 
-import com.mycompany.electronicstore.model.ITCommodity;
 import com.mycompany.electronicstore.model.MobileDevice;
 import com.mycompany.electronicstore.repository.MobileDeviceRepository;
 import com.mycompany.electronicstore.service.MobileDeviceService;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -10,7 +10,7 @@ import com.mycompany.electronicstore.repository.TelevisionRepository;
 import com.mycompany.electronicstore.service.TelevisionService;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

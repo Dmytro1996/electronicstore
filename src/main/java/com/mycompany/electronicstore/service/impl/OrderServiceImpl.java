@@ -11,7 +11,7 @@ import com.mycompany.electronicstore.repository.OrderRepository;
 import com.mycompany.electronicstore.service.OrderService;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

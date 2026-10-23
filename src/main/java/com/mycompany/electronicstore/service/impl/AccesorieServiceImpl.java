@@ -13,7 +13,7 @@ import com.mycompany.electronicstore.service.AccesorieService;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 /**
  *
  * @author dmytr

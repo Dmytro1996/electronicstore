@@ -10,7 +10,7 @@ import com.mycompany.electronicstore.repository.LaptopRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mycompany.electronicstore.service.LaptopService;
-import javax.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +49,7 @@ public class LaptopServiceImpl implements LaptopService {
     
     @Tool
     public List<Laptop> getAll(){
+        System.out.println("Tool called.");
         return laptopRepo.findAll();
     }
 }

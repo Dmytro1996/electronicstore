@@ -48,8 +48,8 @@ public class OrderController {
     private OrderService orderService;
     Logger logger=LoggerFactory.getLogger(OrderController.class);
     private List<Commodity> basket;
-    @Autowired
-    private Client client;
+    //@Autowired
+    //private Client client;
     @Autowired
     private JavaMailSender emailSender;
     
@@ -71,9 +71,9 @@ public class OrderController {
     @GetMapping("/read/{id}")
     public String read(@PathVariable("id")long id, Model model){
         Order order=orderService.readById(id);
-        UserProfile user=client.getUser(order.getUserId()).getProfile();
+        //UserProfile user=client.getUser(order.getUserId()).getProfile();
         model.addAttribute("order", order);
-        model.addAttribute("user", user);
+        //model.addAttribute("user", user);
         return "/order-details";
     }
     
@@ -135,9 +135,9 @@ public class OrderController {
     
     private void addOrdersToModel(Model model, List<Order> orders){
         Map<Order, String> orderMap=new HashMap<>();
-        orders.stream().forEach(order->{
-            UserProfile userProfile=client.getUser(order.getUserId()).getProfile();
-            orderMap.put(order, userProfile.getFirstName()+" "+userProfile.getLastName());});
+        //orders.stream().forEach(order->{
+        //    UserProfile userProfile=client.getUser(order.getUserId()).getProfile();
+        //    orderMap.put(order, userProfile.getFirstName()+" "+userProfile.getLastName());});
         model.addAttribute("orderMap", orderMap.entrySet());
     }
     

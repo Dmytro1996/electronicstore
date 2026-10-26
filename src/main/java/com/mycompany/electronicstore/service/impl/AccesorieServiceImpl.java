@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.ai.tool.annotation.Tool;
 /**
  *
  * @author dmytr
@@ -48,6 +49,7 @@ public class AccesorieServiceImpl implements AccesorieService{
                 .collect(Collectors.toList());
     }
 
+    @Tool
     public List<Accesorie> getAll(){
         return accRepo.findAll();
     }   

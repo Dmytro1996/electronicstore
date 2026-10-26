@@ -5,6 +5,7 @@
  */
 package com.mycompany.electronicstore.model;
 //import electronicstore.exceptions.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import java.util.Objects;
 import jakarta.persistence.Column;
@@ -29,6 +30,7 @@ public abstract class Commodity {
     @NotNull    
     @ManyToOne
     @JoinColumn(name="brand_id")
+    @JsonManagedReference
     private Brand brand;
     @Column
     @Pattern(regexp = "^[A-Z]+((\\s?)(\\w+))+",

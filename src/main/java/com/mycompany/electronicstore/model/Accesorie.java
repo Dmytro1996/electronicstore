@@ -9,6 +9,7 @@ package com.mycompany.electronicstore.model;
 import electronicstore.exceptions.NumericValueException;
 import electronicstore.exceptions.ResolutionException;
 import electronicstore.exceptions.StringFieldException;*/
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +31,8 @@ public class Accesorie extends Commodity{
     private String type;
     @Column(name="short_description")
     private String shortDescription;
-    @ManyToMany(mappedBy="acc")
+    @ManyToMany(mappedBy="acc")    
+    @JsonIgnore
     private List<Order> orders;
     
     public Accesorie(){

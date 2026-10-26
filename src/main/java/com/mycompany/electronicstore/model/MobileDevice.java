@@ -5,6 +5,7 @@
  */
 package com.mycompany.electronicstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,7 +35,8 @@ public class MobileDevice extends ITCommodity {
     private int camera;
     @Column
     private boolean gps;
-    @ManyToMany(mappedBy="mobiles")
+    @ManyToMany(mappedBy="mobiles")    
+    @JsonIgnore
     private List<Order> orders;
     
     public MobileDevice(){

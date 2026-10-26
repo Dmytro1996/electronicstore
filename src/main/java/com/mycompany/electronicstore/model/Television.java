@@ -5,6 +5,7 @@
  */
 package com.mycompany.electronicstore.model;
 //import electronicstore.exceptions.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +22,8 @@ public class Television extends ScreenCommodity {
      private boolean threeD;      
      @Column(name="smart_tv")
      private boolean smartTv;
-     @ManyToMany(mappedBy="tvs")
+     @ManyToMany(mappedBy="tvs")    
+    @JsonIgnore
      private List<Order> orders;
 
     public Television(){}

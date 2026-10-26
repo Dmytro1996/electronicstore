@@ -5,6 +5,9 @@
  */
 package com.mycompany.electronicstore.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -18,7 +21,8 @@ import jakarta.persistence.Table;
 @Table(name="laptops")
 public class Laptop extends ITCommodity {
     
-    @ManyToMany(mappedBy="laptops")
+    @ManyToMany(mappedBy="laptops")    
+    @JsonIgnore
     private List<Order> orders;
     
     public Laptop() {

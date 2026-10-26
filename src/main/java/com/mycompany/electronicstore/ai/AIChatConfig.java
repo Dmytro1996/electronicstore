@@ -10,6 +10,7 @@ import com.mycompany.electronicstore.service.MobileDeviceService;
 import com.mycompany.electronicstore.service.TelevisionService;
 import org.springframework.ai.tool.ToolCallback;
 import org.springframework.ai.tool.function.FunctionToolCallback;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,12 +22,14 @@ import org.springframework.context.annotation.Configuration;
 public class AIChatConfig {
     
     @Bean
+    @Qualifier("availableLaptops")
     public ToolCallback getAllLaptops(LaptopService laptopService) {
         return FunctionToolCallback.builder("availableLaptops", laptopService::getAll)
                 .description("Retrieves all the laptops available for sale").build();
     }
     
-    @Bean
+    @Bean    
+    @Qualifier("availableMobileDevices")
     public ToolCallback getAllMobileDevices(MobileDeviceService mobileDeviceService) {
         return FunctionToolCallback.builder("availableMobileDevices", 
                 mobileDeviceService::getAll).description(
@@ -35,15 +38,17 @@ public class AIChatConfig {
     }
     
     @Bean
+    @Qualifier("availableTelevisions")
     public ToolCallback getAllTvs(TelevisionService tvService) {
-        return FunctionToolCallback.builder("availableLaptops", tvService::getAll)
+        return FunctionToolCallback.builder("availableTelevisions", tvService::getAll)
                 .description("Retrieves all the televisions available for sale")
                 .build();
     }
     
     @Bean
+    @Qualifier("availableAccesories")
     public ToolCallback getAllAccesories(AccesorieService accesorieService) {
-        return FunctionToolCallback.builder("availableLaptops", accesorieService::getAll)
+        return FunctionToolCallback.builder("availableAccesories", accesorieService::getAll)
                 .description("Retrieves all the accesories available for sale")
                 .build();
     }

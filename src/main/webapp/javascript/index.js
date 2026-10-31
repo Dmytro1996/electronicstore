@@ -144,6 +144,33 @@ window.onclick=function(event){
     }    
 };
 
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
 
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
 
-
+async function send_to_ai_chat() {
+    if(document.getElementById("chat-history").value.trim().length < 1) {
+        document.getElementById("chat-history").value = 
+                document.getElementById("chat-history").getAttribute("placeholder");
+    }
+    user_input = document.getElementById("ai-message-input").value;
+    document.getElementById("chat-history").value = 
+            document.getElementById("chat-history").value + "\n\nYou:" 
+            + user_input;    
+    document.getElementById("ai-message-input").value = "";
+    const response = await fetch("/aichat/send-message", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams({message: user_input})
+    });
+    response_json = await response.json();//.message;
+    document.getElementById("chat-history").value = 
+            document.getElementById("chat-history").value + "\n\n" 
+            + response_json.message;
+}

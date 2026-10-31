@@ -99,6 +99,7 @@
             <a href="../../../java/com/mycompany/electronicstore/service/MobileDeviceService.java"></a>
         </div>
         <jsp:include page="shopping-cart.jsp"/> 
+        <jsp:include page="ai-chat-window.jsp"/>
         <div id ="overlay"></div>
         <footer>            
           <h1>Contacts:</h1>

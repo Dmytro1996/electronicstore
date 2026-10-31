@@ -59,7 +59,8 @@
         <div id="commodityList">
           ${acc}
         </div>
-        <jsp:include page="shopping-cart.jsp"/> 
+        <jsp:include page="shopping-cart.jsp"/>
+        <jsp:include page="ai-chat-window.jsp"/>
         <div id ="overlay"></div>
         <footer>            
           <h1>Contacts:</h1>

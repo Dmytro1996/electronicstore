@@ -33,6 +33,7 @@
         <sec:authorize access="hasAuthority('ADMIN')">
             <a href="/orders/all">See orders</a>
         </sec:authorize>
+        <jsp:include page="ai-chat-window.jsp"/>
         <h2 id="popularCommoditiesHeader">Popular commodities</h2>
         
         <% 

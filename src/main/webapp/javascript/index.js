@@ -162,15 +162,30 @@ async function send_to_ai_chat() {
             document.getElementById("chat-history").value + "\n\nYou:" 
             + user_input;    
     document.getElementById("ai-message-input").value = "";
-    const response = await fetch("/aichat/send-message", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: new URLSearchParams({message: user_input})
-    });
-    response_json = await response.json();//.message;
-    document.getElementById("chat-history").value = 
-            document.getElementById("chat-history").value + "\n\n" 
-            + response_json.message;
+    try {
+        const response = await fetch("/aichat/send-message", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({message: user_input})
+        });
+        response_json = await response.json();//.message;
+        document.getElementById("chat-history").value = 
+                document.getElementById("chat-history").value + "\n\n" 
+                + response_json.message;
+    } catch(error) {
+        document.getElementById("chat-history").value = 
+                document.getElementById("chat-history").value + "\n\n" 
+                + "Sorry. An error occured while acccessing the chatbot."
+                + "Please, try again later.";
+    }
+    sessionStorage.setItem("ai-chat-conversation", 
+        document.getElementById("chat-history").value);
+}
+
+if(sessionStorage.getItem("ai-chat-conversation")!==undefined || 
+                sessionStorage.getItem("ai-chat-conversation")!==null) {
+        document.getElementById("chat-history").value = 
+                sessionStorage.getItem("ai-chat-conversation");
 }

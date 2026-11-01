@@ -9,5 +9,5 @@ package com.mycompany.electronicstore.service;
  */
 public interface AiChatService {
     
-    String processMessage(String message);
+    String processMessage(String message, String sessionId);
 }

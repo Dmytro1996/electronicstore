@@ -3,6 +3,8 @@ package com.mycompany.electronicstore.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mycompany.electronicstore.service.AiChatService;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.tool.ToolCallback;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,8 @@ public class AiChatServiceImpl implements AiChatService{
     private final ChatClient chatClient;
     
     @Autowired
-    public AiChatServiceImpl(ChatClient.Builder chatClientBuilder, 
+    public AiChatServiceImpl(ChatClient.Builder chatClientBuilder,
+            ChatMemory chatMemory,
             @Qualifier("availableLaptops")ToolCallback availableLaptops, 
             @Qualifier("availableMobileDevices")ToolCallback availableMobileDevices, 
             @Qualifier("availableTelevisions")ToolCallback availableTelevisions, 
@@ -31,12 +34,16 @@ public class AiChatServiceImpl implements AiChatService{
                         "helping customers with their inquiries and providing " + 
                         "advice on buying electronic devices."
         ).defaultTools(availableLaptops, availableMobileDevices, 
-                availableTelevisions, availableAccesories).build();
+                availableTelevisions, availableAccesories)
+                .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
+                .build();
     }
 
     @Override
-    public String processMessage(String message) {
-        return chatClient.prompt(message).call().content();
+    public String processMessage(String message, String sessionId) {
+        return chatClient.prompt(message)
+                .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, sessionId))
+                .call().content();
     }
     
 }

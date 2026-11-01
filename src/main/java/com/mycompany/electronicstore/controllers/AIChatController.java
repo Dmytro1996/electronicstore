@@ -6,6 +6,7 @@ package com.mycompany.electronicstore.controllers;
 
 import com.mycompany.electronicstore.model.AIChatMessage;
 import com.mycompany.electronicstore.service.AiChatService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,9 @@ public class AIChatController {
     }
     
     @PostMapping("/send-message")
-    public AIChatMessage receiveMessage(@RequestParam("message")String message) {
-        return new AIChatMessage(aiChatService.processMessage(message));
+    public AIChatMessage receiveMessage(HttpSession httpSession, 
+            @RequestParam("message")String message) {
+        return new AIChatMessage(
+                aiChatService.processMessage(message, httpSession.getId()));
     }
 }

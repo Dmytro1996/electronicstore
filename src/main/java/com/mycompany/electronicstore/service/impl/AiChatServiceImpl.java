@@ -39,8 +39,8 @@ public class AiChatServiceImpl implements AiChatService{
                 "Youre a helpful AI assitant in an online electronic store " + 
                         "helping customers with their inquiries and providing " + 
                         "advice on buying electronic devices."
-        ).defaultTools(List.of(availableLaptops, availableMobileDevices, 
-                availableTelevisions, availableAccesories)).build();
+        ).defaultTools(availableLaptops, availableMobileDevices, 
+                availableTelevisions, availableAccesories).build();
     }
 
     @Override

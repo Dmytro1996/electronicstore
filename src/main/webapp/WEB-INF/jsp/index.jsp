@@ -30,7 +30,7 @@
           <a href="/laptop/all"><img src="images/laptop-laptops.jpeg" alt="Laptops"><div>Laptops</div></a>
           <a href="acc/all"><img src="images/acc-accesories.jpg" alt="Accesories"><div>Accesories</div></a>          
         </div>
-        <sec:authorize access="hasAuthority('ADMIN')">
+        <sec:authorize access="hasRole('ADMIN')">
             <a href="/orders/all">See orders</a>
         </sec:authorize>
         <jsp:include page="ai-chat-window.jsp"/>

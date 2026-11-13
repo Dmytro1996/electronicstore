@@ -59,7 +59,7 @@ public class OrderController {
         this.basket=basket;
     }
     
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
     public String getAll(Model model){
         addOrdersToModel(model, orderService.getAll());
@@ -67,7 +67,7 @@ public class OrderController {
         return "orders";
     }
     
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/read/{id}")
     public String read(@PathVariable("id")long id, Model model){
         Order order=orderService.readById(id);
@@ -77,7 +77,7 @@ public class OrderController {
         return "/order-details";
     }
     
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id")long id){
         orderService.delete(id);

@@ -41,16 +41,16 @@
                   <th>Id</th>
                   <th>Fullname</th>
                   <th colspan="2">Executed</th>                  
-              </tr>              
-              <c:forEach items="${orderMap}" var="orderPair">
+              </tr>
+              <c:forEach items="${orders}" var="order">
                   <tr>
-                      <td>${orderPair.getKey().getId()}</td>
-                      <td><a href="/orders/read/${orderPair.getKey().getId()}">
-                              ${orderPair.getValue()} 
+                      <td>${order.getId()}</td>
+                      <td><a href="/orders/read/${order.getId()}">
+                              ${order.getUser().getName()} 
                           </a>
                       </td>
-                      <td>${orderPair.getKey().isExecuted()}</td>
-                      <td><a href="/orders/delete/${orderPair.getKey().getId()}">Delete</a></td>
+                      <td>${order.isExecuted()}</td>
+                      <td><a href="/orders/delete/${order.getId()}">Delete</a></td>
                   </tr>
               </c:forEach>
           </table>

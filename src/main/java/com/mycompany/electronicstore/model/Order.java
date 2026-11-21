@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -29,9 +30,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotNull
-    @Column(name="user_id")
-    private String userId;
     @Column
     private boolean executed;
     @ManyToMany
@@ -54,16 +52,16 @@ public class Order {
             joinColumns=@JoinColumn(name="order_id"),
             inverseJoinColumns=@JoinColumn(name="acc_id"))
     private List<Accesorie> acc;
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     public Order() {
     }
 
     public long getId() {
         return id;
-    }
-
-    public String getUserId() {
-        return userId;
     }
 
     public boolean isExecuted() {
@@ -94,12 +92,12 @@ public class Order {
         return comms;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setExecuted(boolean executed) {
@@ -120,6 +118,10 @@ public class Order {
 
     public void setAcc(List<Accesorie> acc) {
         this.acc = acc;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     
 }

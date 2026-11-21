@@ -63,6 +63,6 @@ public class AccesorieController {
     @PostMapping("/buy/{id}")
     public String buy(@PathVariable("id") long id){
         basket.add(accService.readById(id));        
-        return "redirect:\\acc\\all";
+        return "redirect:/acc/all";
     }
 }

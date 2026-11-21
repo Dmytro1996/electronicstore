@@ -64,7 +64,7 @@ public class TvController {
     @PostMapping("/buy/{id}")
     public String buy(@PathVariable("id") long id){
         basket.add(tvService.readById(id));        
-        return "redirect:\\tv\\all";
+        return "redirect:/tv/all";
     }
         
 }

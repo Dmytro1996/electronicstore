@@ -86,6 +86,6 @@ public class MobileController {
     @PostMapping("/buy/{id}")
     public String buy(@PathVariable("id") long id){
         basket.add(mobileService.readById(id));        
-        return "redirect:\\mobile\\all";
+        return "redirect:/mobile/all";
     }
 }

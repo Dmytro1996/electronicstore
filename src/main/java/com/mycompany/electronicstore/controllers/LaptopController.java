@@ -64,6 +64,6 @@ public class LaptopController {
     @PostMapping("/buy/{id}")
     public String buy(@PathVariable("id") long id){
         basket.add(laptopService.readById(id));        
-        return "redirect:\\laptop\\all";
+        return "redirect:/laptop/all";
     }
 }

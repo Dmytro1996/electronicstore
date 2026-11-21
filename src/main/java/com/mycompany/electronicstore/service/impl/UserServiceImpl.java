@@ -5,19 +5,14 @@
  */
 package com.mycompany.electronicstore.service.impl;
 
-import com.mycompany.electronicstore.details.UserDetailsImpl;
 import com.mycompany.electronicstore.exception.NullEntityReferenceException;
 import com.mycompany.electronicstore.model.User;
 import com.mycompany.electronicstore.repository.UserRepository;
 import com.mycompany.electronicstore.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import javax.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,15 +20,16 @@ import org.springframework.stereotype.Service;
  * @author dmytr
  */
 @Service
-public class UserServiceImpl implements UserService,UserDetailsService {
+public class UserServiceImpl implements UserService {
     
-    private UserRepository userRepo;
+    private final UserRepository userRepo;
     
     @Autowired
     public UserServiceImpl(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
     
+    @Override
     public User create(User user){
         if(user!=null){
             return userRepo.save(user);
@@ -41,6 +37,7 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         throw new NullEntityReferenceException("User cannot be null");
     }
     
+    @Override
     public User readById(long id){
         if(userRepo.findById(id).isPresent()){
             return userRepo.findById(id).get();
@@ -48,16 +45,8 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         throw new EntityNotFoundException("User with id="+id+" does not exist");
     }
     
+    @Override
     public List<User> getAll(){
         return userRepo.findAll().isEmpty()?new ArrayList():userRepo.findAll();
-    }
-    
-    @Override
-    public UserDetails loadUserByUsername(String userName){        
-        Optional<User> user=userRepo.findAll().stream().filter(u->u.getEmail().equals(userName)).findAny();
-        if(user.isPresent()){            
-            return new UserDetailsImpl(user.get());
-        }               
-        throw new UsernameNotFoundException("User not found");
     }
 }

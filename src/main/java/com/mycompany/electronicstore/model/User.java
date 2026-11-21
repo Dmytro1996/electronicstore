@@ -5,37 +5,48 @@
  */
 package com.mycompany.electronicstore.model;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import org.hibernate.validator.constraints.Length;
 
 /**
  *
  * @author dmytr
  */
+@Entity
+@Table(name="users")
 public class User {
     
-    @NotNull
-    @Pattern(regexp = "[A-Z][a-z]+",
-            message = "Must start with a capital letter followed by one or more lowercase letters")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Pattern(regexp = "[A-Za-z0-9 ]+",
+            message = "Must contain lowercase, uppercase letters, numbers or spaces")
     private String firstName;
-    @NotNull
-    @Pattern(regexp = "[A-Z][a-z]+",
-            message = "Must start with a capital letter followed by one or more lowercase letters")
+    @Pattern(regexp = "[A-Za-z0-9 ]+",
+            message = "Must contain lowercase, uppercase letters, numbers or spaces")
     private String lastName;
     @NotNull
+    @Pattern(regexp = "[A-Za-z0-9 ]+",
+            message = "Must contain lowercase, uppercase letters, numbers or spaces.")
+    private String name;
+    @NotNull
     @Pattern(regexp = "[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}", message = "Must be a valid e-mail address")
+    @Column(unique = true)
     private String email;
     @Pattern(regexp = "\\+?[0-9]{10,12}", message = "Must be a valid phone number")
     private String phone;
-    @NotBlank
-    @Pattern(regexp="([0-9]*[A-Za-z]+[0-9]+[\\W]*[A-Za-z]*)+", 
-            message="Must be at least 6 characterslong, contain at least 1 digit or 1 number")
-    @Length(min=6, message="Must be at least 6 characterslong, contain at least 1 digit or 1 number")
-    private String password;
 
     public User() {
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -46,16 +57,20 @@ public class User {
         return lastName;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public String getPhone() {
         return phone;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setFirstName(String firstName) {
@@ -66,12 +81,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPhone(String phone) {

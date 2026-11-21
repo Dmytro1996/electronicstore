@@ -31,15 +31,15 @@
             </tr>
             <tr>
                 <td>Ordered by:</td>
-                <td>${user.getFirstName()} ${user.getLastName()}</td>
+                <td>${order.getUser().getName()}</td>
             </tr>
             <tr>
                 <td>Email:</td>
-                <td>${user.getEmail()}</td>
+                <td>${order.getUser().getEmail()}</td>
             </tr>
             <tr>
                 <td>Phone:</td>
-                <td>${(empty user.getMobilePhone())?"unknown":user.getMobilePhone()}</td>
+                <td>${(empty order.getUser().getPhone())?"unknown":order.getUser().getPhone()}</td>
             </tr>
             <tr>
                 <td>Executed:</td>

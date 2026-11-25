@@ -28,13 +28,14 @@ public class AiChatServiceImpl implements AiChatService{
             @Qualifier("availableLaptops")ToolCallback availableLaptops, 
             @Qualifier("availableMobileDevices")ToolCallback availableMobileDevices, 
             @Qualifier("availableTelevisions")ToolCallback availableTelevisions, 
-            @Qualifier("availableAccesories")ToolCallback availableAccesories) {
+            @Qualifier("availableAccesories")ToolCallback availableAccesories,
+            @Qualifier("cartFillmentTool")ToolCallback cartFillmentTool) {
         this.chatClient = chatClientBuilder.defaultSystem(
                 "Youre a helpful AI assitant in an online electronic store " + 
                         "helping customers with their inquiries and providing " + 
                         "advice on buying electronic devices."
         ).defaultTools(availableLaptops, availableMobileDevices, 
-                availableTelevisions, availableAccesories)
+                availableTelevisions, availableAccesories, cartFillmentTool)
                 .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
                 .build();
     }

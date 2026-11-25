@@ -102,8 +102,15 @@ public class OrderController {
             order.setUser(optionalUser.get());
         } else {
             User user = new User();
-            user.setName(authUser.getAttribute("name"));
+            if(authUser.getAttribute("name")!=null) {
+                user.setName(authUser.getAttribute("name"));
+            } else {
+                user.setName(Optional.of(
+                        (String)authUser.getAttribute("nickname")).orElse(""));
+            }           
             user.setEmail(authUser.getEmail());
+            user.setFirstName(authUser.getAttribute("given_name"));
+            user.setLastName(authUser.getAttribute("last_name"));
             order.setUser(userService.create(user));
         }
         orderService.create(order);

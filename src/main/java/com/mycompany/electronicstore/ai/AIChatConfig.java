@@ -4,6 +4,8 @@
  */
 package com.mycompany.electronicstore.ai;
 
+import com.mycompany.electronicstore.model.Commodity;
+import com.mycompany.electronicstore.model.Laptop;
 import com.mycompany.electronicstore.service.AccesorieService;
 import com.mycompany.electronicstore.service.LaptopService;
 import com.mycompany.electronicstore.service.MobileDeviceService;
@@ -51,5 +53,14 @@ public class AIChatConfig {
         return FunctionToolCallback.builder("availableAccesories", accesorieService::getAll)
                 .description("Retrieves all the accesories available for sale")
                 .build();
+    }
+    
+    @Bean
+    @Qualifier("cartFillmentTool")
+    public ToolCallback addItemToCart(CartFillmentTool cartFillmentTool) {
+        return FunctionToolCallback.builder(
+                "cartFillmentTool", cartFillmentTool::addToCart)
+                .description("Adds an item to the shopping cart.")
+                .inputType(Laptop.class).build();
     }
 }

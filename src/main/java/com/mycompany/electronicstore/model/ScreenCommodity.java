@@ -33,15 +33,15 @@ public abstract class ScreenCommodity extends Commodity{
     public double getScreenSize() {
         return screenSize;
     }
+    
     public Resolution getRes() {
         return res;
     }
+    
     public void setScreenSize(double screenSize) {
         this.screenSize = screenSize;
     }
-    public void setScreenSize(int screenSize){
-        this.screenSize = screenSize;
-    }
+    
     public void setRes(Resolution res) {
         this.res = res;
     }    

@@ -5,7 +5,7 @@
  */
 package com.mycompany.electronicstore.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,16 +33,16 @@ public class Brand {
             message = "Wrong brand name.Must start with a capital letter followed by one or more lowercase letters")
     private String name;
     @OneToMany(mappedBy="brand")
-    @JsonBackReference
+    @JsonIgnore
     private List<Television> tvs;
     @OneToMany(mappedBy="brand")
-    @JsonBackReference
+    @JsonIgnore
     private List<Laptop> laptops;
     @OneToMany(mappedBy="brand")
-    @JsonBackReference
+    @JsonIgnore
     private List<MobileDevice> mobiles;
     @OneToMany(mappedBy="brand")
-    @JsonBackReference
+    @JsonIgnore
     private List<Accesorie> accesories;
 
     public Brand() {
